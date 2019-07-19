@@ -1,0 +1,84 @@
+<app-navbar [pagename] = "pagename"></app-navbar>
+<div class="container">
+<div class="row"><h5>Crear o modificar Documento</h5></div>
+<div class="row padded">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="nombre" type="text" class="validate">
+          <label for="nombre">Nombre</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="apellido" type="text" class="validate">
+          <label for="apellido">Descripción</label>
+        </div>
+      </div>
+      <div class="row">
+            <div class="input-field col s6">
+                    <select>
+                      <option value="" disabled selected>Elija un nivel académico</option>
+                      <option value="1">Primaria</option>
+                      <option value="2">Secundaria</option>
+                      <option value="3">Grado</option>
+                    </select>
+                    <label>Nivel</label>
+                  </div>
+                  <div class="input-field col s6">
+                      <select>
+                        <option value="" disabled selected>Elija una institución</option>
+                        <option value="1">Colegio San José</option>
+                        <option value="2">UCSD</option>
+                        <option value="3">PUCMM</option>
+                      </select>
+                      <label>Institución</label>
+              </div>
+        </div>
+        <div class="row">
+            <a class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></a>
+        </div>
+    </form>
+    <div class="row">
+      <h5>
+        Selecciona un registro para editarlo.
+      </h5>
+    </div>
+    <div class="row">
+      <div class="col s12">
+          <table>
+              <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Nivel</th>
+                    <th>Institución</th>
+                </tr>
+              </thead>
+      
+              <tbody>
+                <tr>
+                  <td>Alvin</td>
+                  <td>Eclair</td>
+                  <td>$0.87</td>
+                  <td>asdasdasdasd</td>
+                  <td><a class="btn-floating btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></a></td>
+                </tr>
+                <tr>
+                  <td>Alan</td>
+                  <td>Jellybean</td>
+                  <td>$3.76</td>
+                  <td>asdasdasdasdasd</td>
+                  <td><a class="btn-floating btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></a></td>
+                </tr>
+                <tr>
+                  <td>Jonathan</td>
+                  <td>Lollipop</td>
+                  <td>$7.00</td>
+                  <td>asdasdasd</td>
+                  <td><a class="btn-floating btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></a></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+</div>
