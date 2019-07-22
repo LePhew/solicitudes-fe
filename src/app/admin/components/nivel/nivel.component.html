@@ -1,0 +1,56 @@
+<app-navbar [pagename] = "pagename"></app-navbar>
+<div class="container">
+<div class="row"><h5>Crear o modificar Niveles</h5></div>
+<div class="row padded">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input [(ngModel)]="nivel.nombre" name="nombre" id="nombre" type="text" class="validate">
+          <label for="nombre">Nombre</label>
+        </div>
+        <div class="input-field col s6">
+          <input [(ngModel)]="nivel.descripcion" name="descripcion" id="descripcion" type="text" class="validate">
+          <label for="descripcion">Descripción</label>
+        </div>
+      </div> 
+      <div class="row">
+            <div class="input-field col s6">
+                <input [(ngModel)]="nivel.orden" name="orden" id="orden" type="text" class="validate">
+                <label for="orden">Orden</label>
+            </div>
+      </div> 
+        <div class="row">
+            <button (click)="crearNivel()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
+            <button *ngIf="editMode" (click) = "actualizarNivel(nivel.id, nivel)" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
+        </div>
+    </form>
+    <div class="row">
+      <h5>
+        Selecciona un registro para editarlo.
+      </h5>
+    </div>
+    <div class="row">
+      <div class="col m12 s12">
+          <table>
+              <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Orden</th>
+                    <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let nivel of niveles">
+                  <td>{{ nivel.nombre }}</td>
+                  <td>{{ nivel.descripcion }}</td>
+                  <td>{{ nivel.orden }}</td>
+                  <td><button (click)="traerNivel(nivel.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
+                  <td><button (click)="borrarNivel(nivel.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">delete</i></button></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+</div>
