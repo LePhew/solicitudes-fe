@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstudianteComponent implements OnInit {
 
+  readonly pagename: string = "Solicitudes"
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  
 
 }

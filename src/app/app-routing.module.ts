@@ -4,9 +4,11 @@ import { DocumentoComponent } from './admin/components/documento/documento.compo
 import { InstitucionComponent } from './admin/components/institucion/institucion.component';
 import { HomeComponent } from './admin/components/home/home.component';
 import { NivelComponent } from './admin/components/nivel/nivel.component';
+import { SolicitudComponent } from './components/solicitud/solicitud.component';
 
 
 const routes: Routes = [
+  {path: '', component: SolicitudComponent},
   {path: 'admin', component: HomeComponent},
   {path: 'admin/documento', component: DocumentoComponent},
   {path: 'admin/institucion', component: InstitucionComponent},
