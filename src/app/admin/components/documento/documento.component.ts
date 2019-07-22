@@ -3,7 +3,6 @@ import { GenericService } from 'src/app/shared/services/generic-service';
 import { Documento, DocumentoDTO } from 'src/app/models/Documento';
 import { Nivel } from 'src/app/models/Nivel';
 import { Institucion } from 'src/app/models/Institucion';
-declare var $:any;
 
 
 @Component({
@@ -19,10 +18,10 @@ export class DocumentoComponent implements OnInit {
   readonly nivelUrl: string = "nivel/";
   readonly institucionUrl: string = "institucion/";
 
-  documentos: any[];
-  documento: DocumentoDTO;
   niveles: Nivel[];
   instituciones: Institucion[];
+  documentos: any[];
+  documento: DocumentoDTO;
   editMode: boolean = false;
 
   constructor(private genericService: GenericService) {
@@ -31,19 +30,13 @@ export class DocumentoComponent implements OnInit {
 
 
   jquery_code(){
-    $(document).ready(function(){
-      $('select').formSelect();
-    });
-    $(document).ready(function(){
-      $('.modal').modal();
-    });
   }
 
   ngOnInit() {
     this.jquery_code();
+    this.getDocumentos();
     this.getNiveles();
     this.getInstituciones();
-    this.getDocumentos();
   }
 
   getDocumentos(){
@@ -80,6 +73,8 @@ export class DocumentoComponent implements OnInit {
   traerDocumento(id: string){
     this.genericService.getById(this.componentUrl, id, (documento) => {
       this.documento = documento;
+      this.getInstituciones();
+      this.getNiveles();
       this.editMode = true;
       console.log(this.documento);
     });

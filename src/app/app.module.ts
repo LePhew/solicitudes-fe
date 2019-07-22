@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
 
 import { NivelComponent } from './admin/components/nivel/nivel.component';
 import { DocumentoComponent } from './admin/components/documento/documento.component';
@@ -32,7 +34,9 @@ import { HomeComponent } from './admin/components/home/home.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSelectModule
   ],
   providers: [GenericService],
   bootstrap: [AppComponent]
