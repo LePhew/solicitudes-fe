@@ -1,1 +1,48 @@
-<p>institucion works!</p>
+<app-navbar [pagename] = "pagename"></app-navbar>
+<div class="container">
+<div class="row"><h5>Crear o modificar Insituciones</h5></div>
+<div class="row padded">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input [(ngModel)]="institucion.nombre" name="nombre" id="nombre" type="text" class="validate">
+          <label for="nombre">Nombre</label>
+        </div>
+        <div class="input-field col s6">
+          <input [(ngModel)]="institucion.descripcion" name="descripcion" id="descripcion" type="text" class="validate">
+          <label for="descripcion">Descripción</label>
+        </div>
+      </div>  
+        <div class="row">
+            <button (click)="crearInstitucion()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
+            <button *ngIf="editMode" (click) = "actualizarInstitucion(institucion.id, institucion)" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
+        </div>
+    </form>
+    <div class="row">
+      <h5>
+        Selecciona un registro para editarlo.
+      </h5>
+    </div>
+    <div class="row">
+      <div class="col m12 s12">
+          <table>
+              <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let institucion of instituciones">
+                  <td>{{ institucion.nombre }}</td>
+                  <td>{{ institucion.descripcion }}</td>
+                  <td><button (click)="traerInstitucion(institucion.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
+                  <td><button (click)="borrarInstitucion(institucion.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">delete</i></button></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+</div>

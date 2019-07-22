@@ -12,29 +12,26 @@
           <input [(ngModel)]="documento.descripcion" name="descripcion" id="descripcion" type="text" class="validate">
           <label for="descripcion">Descripción</label>
         </div>
-      </div>
+      </div>  
       <div class="row">
             <div class="input-field col s6">
-                    <select>
-                      <option value="" disabled selected>Elija un nivel académico</option>
-                      <option value="1">Primaria</option>
-                      <option value="2">Secundaria</option>
-                      <option value="3">Grado</option>
+                    <select name="nivelId" [(ngModel)]="documento.nivelId">
+                      <option value="" disabled selected>Selecciona un nivel</option>
+                      <option *ngFor="let nivel of niveles" name="nivelId" [ngValue]="nivel.id">{{ nivel.nombre }}</option>
                     </select>
                     <label>Nivel</label>
                   </div>
                   <div class="input-field col s6">
-                      <select>
-                        <option value="" disabled selected>Elija una institución</option>
-                        <option value="1">Colegio San José</option>
-                        <option value="2">UCSD</option>
-                        <option value="3">PUCMM</option>
+                      <select name="institucionId" [(ngModel)]="documento.institucionId">
+                      <option value="" disabled selected>Selecciona una institucion</option>
+                      <option *ngFor="let institucion of instituciones" [ngValue]="institucion.id">{{ institucion.nombre }}</option>
                       </select>
                       <label>Institución</label>
               </div>
         </div>
         <div class="row">
-            <a class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></a>
+            <button (click)="crearDocumento()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
+            <button *ngIf="editMode" (click) = "actualizarDocumento(documento.id, documento)" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
         </div>
     </form>
     <div class="row">
@@ -51,30 +48,17 @@
                     <th>Descripción</th>
                     <th>Nivel</th>
                     <th>Institución</th>
+                    <th>Opciones</th>
                 </tr>
               </thead>
-      
               <tbody>
-                <tr>
-                  <td>Alvin</td>
-                  <td>Eclair</td>
-                  <td>$0.87</td>
-                  <td>asdasdasdasd</td>
-                  <td><a class="btn-floating btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></a></td>
-                </tr>
-                <tr>
-                  <td>Alan</td>
-                  <td>Jellybean</td>
-                  <td>$3.76</td>
-                  <td>asdasdasdasdasd</td>
-                  <td><a class="btn-floating btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></a></td>
-                </tr>
-                <tr>
-                  <td>Jonathan</td>
-                  <td>Lollipop</td>
-                  <td>$7.00</td>
-                  <td>asdasdasd</td>
-                  <td><a class="btn-floating btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></a></td>
+                <tr *ngFor="let documento of documentos">
+                  <td>{{ documento.nombre }}</td>
+                  <td>{{ documento.descripcion }}</td>
+                  <td>{{ documento.nivel.nombre }}</td>
+                  <td>{{ documento.institucion.nombre }}</td>
+                  <td><button (click)="traerDocumento(documento.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
+                  <td><button (click)="borrarDocumento(documento.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">delete</i></button></td>
                 </tr>
               </tbody>
             </table>
