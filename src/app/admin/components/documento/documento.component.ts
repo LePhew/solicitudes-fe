@@ -76,7 +76,6 @@ export class DocumentoComponent implements OnInit {
       this.getInstituciones();
       this.getNiveles();
       this.editMode = true;
-      console.log(this.documento);
     });
   }
 

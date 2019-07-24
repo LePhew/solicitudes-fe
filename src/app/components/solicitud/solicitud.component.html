@@ -1,29 +1,66 @@
 <app-navbar [pagename]="pagename"></app-navbar>
 <div class="container">
-<div class="row">
-<div class="col s6 ">
-    <div class="card">
-        <div class="card-content">
-        <h5>Bienvenido Marcos</h5>
-        <ul class="collection">
-            <li class="collection-item">Nivel: </li>
-            <li class="collection-item">Institucion: </li>
-            <li class="collection-item">Matrícula: </li>
-            <li class="collection-item">Estado: </li>
-        </ul>
+    <div class="row">
+        <div class="col m4">
+                <div class="card">
+                <h5>Tu información</h5>
+                <div class="card-content">
+                    <h6>{{ estudiante.nombres }} {{ estudiante.apellidos }}</h6>
+                </div>
+              </div>
+        </div>
+        <div class="col m8">
+                <div class="card">
+                        <h5>Documentos disponibles</h5>
+                <div class="card-content">
+                    
+                <ul class="collapsible">
+                    <li *ngFor="let documento of documentos">
+                        <div class="collapsible-header"><strong>{{documento.nombre}} de la institucion {{ documento.institucion.nombre }}</strong></div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <ul>
+                                    <li>
+                                        Descripción: {{documento.descripcion}} <a class="btn-floating btn-small waves-effect waves-light blue right"><i class="material-icons">add</i></a>
+                                    </li>
+                                    <li>
+                                        Nivel: {{ documento.nivel.nombre }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>             
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="row">
+        <h5>Documentos seleccionados</h5>
+    </div>
+    <div class="row">
+        <div class="col m12">
+        <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Nivel</th>
+                        <th>Institución</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let documentoSeleccionado of documentosSeleccionados">
+                    <td>{{ documentoSeleccionado.nombre }}</td>
+                    <td>{{ documentoSeleccionado.descripcion }}</td>
+                    <td>{{ documentoSeleccionado.nivel.nombre }}</td>
+                    <td>{{ documentoSeleccionado.institucion.nombre }}</td>
+                    <td><button (click)="traerDocumento(documento.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
+                    <td><button (click)="borrarDocumento(documento.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">delete</i></button></td>
+                    </tr>
+                </tbody>
+                </table>
         </div>
     </div>
 </div>
-<div class="col s6 ">
-        <div class="card">
-            <div class="card-content">
-            <h5>Documentos que puedes solicitar</h5>
-            <form action="#">
-                <p>
-                    <input type="checkbox" />
-                    <span>asdasd</span>
-                </p>
-                </form>
-            </div>
-        </div>
-    </div>

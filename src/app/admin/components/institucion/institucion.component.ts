@@ -32,6 +32,7 @@ export class InstitucionComponent implements OnInit {
   }
   crearInstitucion(){
     this.genericService.crear(this.componentUrl, this.institucion, () => {
+      this.institucion = new InstitucionDTO("","");
       this.getInstituciones();
     });
     
@@ -47,7 +48,6 @@ export class InstitucionComponent implements OnInit {
     this.genericService.getById(this.componentUrl, id, (institucion) => {
       this.institucion = institucion;
       this.editMode = true;
-      console.log(this.institucion);
     });
   }
 

@@ -31,6 +31,7 @@ export class NivelComponent implements OnInit {
   }
   crearNivel(){
     this.genericService.crear(this.componentUrl, this.nivel, () => {
+      this.nivel = new NivelDTO("","",0);
       this.getNiveles();
     });
     
@@ -46,7 +47,6 @@ export class NivelComponent implements OnInit {
     this.genericService.getById(this.componentUrl, id, (nivel) => {
       this.nivel = nivel;
       this.editMode = true;
-      console.log(this.nivel);
     });
   }
 
