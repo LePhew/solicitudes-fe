@@ -1,30 +1,33 @@
 <app-navbar [pagename]="pagename"></app-navbar>
 <div class="container">
     <div class="row">
-        <div class="col m4">
+        <div class="col s12 l4">
                 <div class="card">
                 <h5>Tu información</h5>
                 <div class="card-content">
-                    <h6>{{ estudiante.nombres }} {{ estudiante.apellidos }}</h6>
+                    <ul>
+                        <li><b>Nombres:</b> {{ estudiante.nombres }} {{ estudiante.apellidos }}</li>
+                        <li><b>Nivel:</b> {{ estudiante.nivel.nombre }}</li>
+                    </ul>
                 </div>
               </div>
         </div>
-        <div class="col m8">
+        <div class="col l8">
                 <div class="card">
                         <h5>Documentos disponibles</h5>
                 <div class="card-content">
                     
                 <ul class="collapsible">
-                    <li *ngFor="let documento of documentos">
-                        <div class="collapsible-header"><strong>{{documento.nombre}} de la institucion {{ documento.institucion.nombre }}</strong></div>
+                    <li *ngFor="let documento of documentos">   
+                        <div class="collapsible-header"><i class="material-icons">file_copy</i><b>{{documento.nombre}} de la institucion {{ documento.institucion.nombre }}</b></div>
                         <div class="collapsible-body">
                             <div class="row">
                                 <ul>
                                     <li>
-                                        Descripción: {{documento.descripcion}} <a class="btn-floating btn-small waves-effect waves-light blue right"><i class="material-icons">add</i></a>
+                                        <b>Descripción:</b> {{documento.descripcion}} <button (click)="agregarASolicitud(documento)" class="btn-floating btn-small waves-effect waves-light blue right"><i class="material-icons">add</i></button>
                                     </li>
                                     <li>
-                                        Nivel: {{ documento.nivel.nombre }}
+                                       <b> Nivel:</b> {{ documento.nivel.nombre }}
                                     </li>
                                 </ul>
                             </div>
@@ -36,7 +39,7 @@
         </div>
     </div>
     <div class="row">
-        <h5>Documentos seleccionados</h5>
+        <h5>Documentos a solicitar</h5><button (click)="enviarSolicitud(documentosSeleccionados)" class="btn waves-effect waves-light light-blue right">Enviar<i class="material-icons right">send</i></button>
     </div>
     <div class="row">
         <div class="col m12">
@@ -50,14 +53,13 @@
                         <th>Opciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngIf="documentosSeleccionados">
                     <tr *ngFor="let documentoSeleccionado of documentosSeleccionados">
                     <td>{{ documentoSeleccionado.nombre }}</td>
                     <td>{{ documentoSeleccionado.descripcion }}</td>
                     <td>{{ documentoSeleccionado.nivel.nombre }}</td>
                     <td>{{ documentoSeleccionado.institucion.nombre }}</td>
-                    <td><button (click)="traerDocumento(documento.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
-                    <td><button (click)="borrarDocumento(documento.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">delete</i></button></td>
+                    <td><button (click)="removerDocumento(documentoSeleccionado)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">delete</i></button></td>
                     </tr>
                 </tbody>
                 </table>

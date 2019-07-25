@@ -9,7 +9,7 @@ declare var $:any;
 })
 export class SolicitudComponent implements OnInit {
 
-  readonly pagename: string = "Hacer una solicitud"
+  readonly pagename: string = "Nueva solicitud"
   readonly componentUrl: string = "solicitud/";
   readonly estudianteUrl: string = "estudiante/";
   readonly documentoUrl: string = "documento/";
@@ -18,6 +18,7 @@ export class SolicitudComponent implements OnInit {
   estudiante: Estudiante;
   solicitudes: any;
   editMode: boolean = false;
+  documentosSeleccionados: Array<any> = [];
 
   constructor(private genericService: GenericService) {
       this.estudiante = new Estudiante("","","",null,"");
@@ -36,7 +37,7 @@ export class SolicitudComponent implements OnInit {
     });
   }
   getEstudiante(){
-    this.genericService.getById(this.estudianteUrl, "1a8c96d6-d3d7-48a1-951c-2d6a935d0cb6", (estudiante) => {
+    this.genericService.getById(this.estudianteUrl, "2406219f-3c80-48bc-bb44-d0cd4ed3dbb1", (estudiante) => {
       console.log(estudiante);
       this.estudiante = estudiante;
       this.editMode = true;
@@ -53,6 +54,20 @@ export class SolicitudComponent implements OnInit {
     this.genericService.getAll(this.componentUrl, (solicitudes) => {
       this.solicitudes = solicitudes;
     })
+  }
+
+  agregarASolicitud(documento: any){
+    this.documentosSeleccionados.push(documento);
+    console.log(this.documentosSeleccionados);
+  }
+
+  removerDocumento(documento:any){
+    let index = this.documentosSeleccionados.indexOf(documento);
+    this.documentosSeleccionados.splice(index, 1);
+  }
+
+  enviarSolicitud(documentosSeleccionados: any){
+    console.log(documentosSeleccionados);
   }
 
 }

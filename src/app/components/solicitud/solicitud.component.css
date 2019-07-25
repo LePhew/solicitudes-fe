@@ -3,10 +3,10 @@
     padding-top: 40px;
 
 }
-.card-content{
-    padding-top: 20px;
-}
 h5{
    padding-left: 10px;
    padding-top: 15px; 
+}
+.card .card-content{
+    padding: 15px;
 }
