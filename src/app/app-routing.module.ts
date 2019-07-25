@@ -5,10 +5,12 @@ import { InstitucionComponent } from './admin/components/institucion/institucion
 import { HomeComponent } from './admin/components/home/home.component';
 import { NivelComponent } from './admin/components/nivel/nivel.component';
 import { SolicitudComponent } from './components/solicitud/solicitud.component';
+import { HistorialSolicitudComponent } from './components/historial-solicitud/historial-solicitud.component';
 
 
 const routes: Routes = [
   {path: '', component: SolicitudComponent},
+  {path: 'solicitudes', component: HistorialSolicitudComponent},
   {path: 'admin', component: HomeComponent},
   {path: 'admin/documento', component: DocumentoComponent},
   {path: 'admin/institucion', component: InstitucionComponent},

@@ -8,11 +8,12 @@
                     <ul>
                         <li><b>Nombres:</b> {{ estudiante.nombres }} {{ estudiante.apellidos }}</li>
                         <li><b>Nivel:</b> {{ estudiante.nivel.nombre }}</li>
+                        <li><b>Institución: </b>{{ estudiante.institucion.nombre }}</li>
                     </ul>
                 </div>
               </div>
         </div>
-        <div class="col l8">
+        <div class="col s12 l8">
                 <div class="card">
                         <h5>Documentos disponibles</h5>
                 <div class="card-content">
@@ -39,7 +40,7 @@
         </div>
     </div>
     <div class="row">
-        <h5>Documentos a solicitar</h5><button (click)="enviarSolicitud(documentosSeleccionados)" class="btn waves-effect waves-light light-blue right">Enviar<i class="material-icons right">send</i></button>
+        <h5>Documentos a solicitar</h5><button (click)="enviarSolicitud(estudiante.id,documentosSeleccionados)" class="btn waves-effect waves-light light-blue right">Enviar<i class="material-icons right">send</i></button>
     </div>
     <div class="row">
         <div class="col m12">

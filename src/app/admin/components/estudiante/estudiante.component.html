@@ -1,1 +1,76 @@
+<app-navbar [pagename] = "pagename"></app-navbar>
+<div class="container">
+<div class="row"><h5>Crear o modificar Documento</h5></div>
+<div class="row padded">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input [(ngModel)]="estudiante.nombre" name="nombre" id="nombre" type="text" class="validate">
+          <label for="nombre">Nombres</label>
+        </div>
+        <div class="input-field col s6">
+          <input [(ngModel)]="estudiante.apellidos" name="apellidos" id="apellidos" type="text" class="validate">
+          <label for="apellidos">Apellidos</label>
+        </div>
+      </div>  
+      <div class="row">
+          <div class="input-field col s6">
+          <mat-form-field style="width: 100%">
+            <mat-label>Niveles</mat-label>
+            <mat-select name="nivelId" [(ngModel)]="documento.nivelId">
+              <mat-option *ngFor="let nivel of niveles" [value]="nivel.id">
+                {{nivel.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+          <div class="input-field col s6">
+              <mat-form-field style="width: 100%">
+                <mat-label>Instituciones</mat-label>
+                <mat-select name="institucionId"  [(ngModel)]="documento.institucionId" >
+                  <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
+                    {{institucion.nombre}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+        </div>
+        <div class="row">
+            <button (click)="crearEstudiante()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
+            <button *ngIf="editMode" (click) = "actualizarEstudiante(estudiante.id, estudiante)" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
+        </div>
+    </form>
+    <div class="row">
+      <h5>
+        Selecciona un registro para editarlo.
+      </h5>
+    </div>
+    <div class="row">
+      <div class="col s12">
+          <table>
+              <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Nivel</th>
+                    <th>Institución</th>
+                    <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let estudiante of estudiantes">
+                  <td>{{ estudiante.nombre }}</td>
+                  <td>{{ estudiante.descripcion }}</td>
+                  <td>{{ estudiante.nivel.nombre }}</td>
+                  <td>{{ estudiante.institucion.nombre }}</td>
+                  <td><button (click)="traerEstudiante(estudiante.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
+                  <td><button (click)="borrarEstudiante(estudiante.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">delete</i></button></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+</div>
 
+    

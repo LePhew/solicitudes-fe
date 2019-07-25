@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Estudiante } from 'src/app/models/Estudiante';
 import { GenericService } from 'src/app/shared/services/generic-service';
+import { Solicitud } from 'src/app/models/Solicitud';
 declare var $:any;
 @Component({
   selector: 'app-solicitud',
@@ -36,8 +37,9 @@ export class SolicitudComponent implements OnInit {
       $('.collapsible').collapsible();
     });
   }
+  
   getEstudiante(){
-    this.genericService.getById(this.estudianteUrl, "2406219f-3c80-48bc-bb44-d0cd4ed3dbb1", (estudiante) => {
+    this.genericService.getById(this.estudianteUrl, "4132070a-ff74-42aa-8c32-8f0b7d613229", (estudiante) => {
       console.log(estudiante);
       this.estudiante = estudiante;
       this.editMode = true;
@@ -66,8 +68,11 @@ export class SolicitudComponent implements OnInit {
     this.documentosSeleccionados.splice(index, 1);
   }
 
-  enviarSolicitud(documentosSeleccionados: any){
-    console.log(documentosSeleccionados);
+  enviarSolicitud(estudianteId: string, documentosSeleccionados: any){
+    let solicitud = new Solicitud(estudianteId, documentosSeleccionados);
+    this.genericService.crear(this.componentUrl, solicitud, () => {
+      this.documentosSeleccionados = [];
+    })
   }
 
 }

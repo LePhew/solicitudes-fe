@@ -1,1 +1,50 @@
-<p>historial-solicitud works!</p>
+<app-navbar [pagename]="pagename" ></app-navbar>
+<div class="container">
+<div class="row">
+    <div class="col m12">
+    <table class="highlight">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Creada</th>
+                <th>Modificada</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+    <tbody>     
+        <tr (click)="showDocumento(solicitud.documentos)" *ngFor="let solicitud of solicitudes">
+            <td>{{ solicitud.solicitudCode | uppercase }}</td>
+            <td>{{ solicitud.creada | date }}</td>
+            <td>{{ solicitud.modificada | date }}</td>
+            <td>{{ solicitud.estado }}</td>
+        </tr>
+    </tbody>
+    </table>
+    </div>
+</div>
+</div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Institución</th>
+                    <th>Nivel</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let documento of documentosSolicitados">
+                    <td>{{ documento.nombre }}</td>
+                    <td>{{ documento.descripcion }}</td>
+                    <td>{{ documento.institucion.nombre }}</td>
+                    <td>{{ documento.nivel.nombre }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a [routerLink] = "['/solicitudes']" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>

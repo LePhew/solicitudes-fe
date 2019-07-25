@@ -59,6 +59,7 @@ export class DocumentoComponent implements OnInit {
 
   crearDocumento(){
     this.genericService.crear(this.componentUrl, this.documento, () => {
+      this.documento = new DocumentoDTO("","","","");
       this.getDocumentos();
     });
     
