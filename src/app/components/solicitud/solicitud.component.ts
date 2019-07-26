@@ -23,13 +23,14 @@ export class SolicitudComponent implements OnInit {
 
   constructor(private genericService: GenericService) {
       this.estudiante = new Estudiante("","","",null,"");
-   }
+      this.getEstudiante();
+      this.getDocumentos();
+      this.getSolicitudes();
+      this.jquery_code();
+    }
 
   ngOnInit() {
-    this.getEstudiante();
-    this.getDocumentos();
-    this.getSolicitudes();
-    this.jquery_code();
+    
   }
 
   jquery_code(){
@@ -40,9 +41,8 @@ export class SolicitudComponent implements OnInit {
   
   getEstudiante(){
     this.genericService.getById(this.estudianteUrl, "4132070a-ff74-42aa-8c32-8f0b7d613229", (estudiante) => {
-      console.log(estudiante);
       this.estudiante = estudiante;
-      this.editMode = true;
+      this.editMode = false;
     });
   }
 

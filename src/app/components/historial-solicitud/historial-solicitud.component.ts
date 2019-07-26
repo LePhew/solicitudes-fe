@@ -29,12 +29,6 @@ export class HistorialSolicitudComponent implements OnInit {
     M.AutoInit()
   }
 
-  jquery_code(){
-    $(document).ready(function(){
-      $('.collapsible').collapsible();
-    });
-  }
-
   getSolicitudes(){
     this.genericService.getAll(this.solicitudesUrl, (solicitudes) => {
       this.solicitudes = solicitudes;

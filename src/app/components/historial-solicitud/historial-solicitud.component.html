@@ -38,8 +38,8 @@
                 <tr *ngFor="let documento of documentosSolicitados">
                     <td>{{ documento.nombre }}</td>
                     <td>{{ documento.descripcion }}</td>
-                    <td>{{ documento.institucion.nombre }}</td>
-                    <td>{{ documento.nivel.nombre }}</td>
+                    <td>{{ documento.institucionId }}</td>
+                    <td>{{ documento.nivelId }}</td>
                 </tr>
             </tbody>
         </table>

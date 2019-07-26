@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NivelDTO } from 'src/app/models/Nivel';
 import { GenericService } from 'src/app/shared/services/generic-service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-nivel',
@@ -15,9 +16,10 @@ export class NivelComponent implements OnInit {
   niveles: any[];
   nivel: NivelDTO;
   editMode: boolean = false;
+  @ViewChild('formNivel',{static: false}) formNivel;
   
   constructor(private genericService: GenericService) {
-    this.nivel = new NivelDTO("","",0);
+    this.nivel = new NivelDTO("","",null);
    }
 
   ngOnInit() {
@@ -31,8 +33,9 @@ export class NivelComponent implements OnInit {
   }
   crearNivel(){
     this.genericService.crear(this.componentUrl, this.nivel, () => {
-      this.nivel = new NivelDTO("","",0);
+      this.nivel = new NivelDTO("","",null);
       this.getNiveles();
+      this.formNivel.resetForm();
     });
     
   }
@@ -52,7 +55,7 @@ export class NivelComponent implements OnInit {
 
   actualizarNivel(id: string, nivel: Partial<NivelDTO>){
     this.genericService.actualizar(this.componentUrl, id, nivel, () => {
-      this.nivel = new NivelDTO("","",0);
+      this.nivel = new NivelDTO("","",null);
       this.editMode = false;
       this.getNiveles();
     })
