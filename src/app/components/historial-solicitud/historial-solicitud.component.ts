@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Solicitud } from 'src/app/models/Solicitud';
+import { Solicitud, SolicitudDTO } from 'src/app/models/Solicitud';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import * as M from 'materialize-css';
+import { Estados } from 'src/app/models/Enum';
 
 declare var $:any;
 
@@ -17,8 +18,10 @@ export class HistorialSolicitudComponent implements OnInit {
   readonly documentosUrl: string = "documento/";
   readonly pagename = "Historial de Solicitudes";
 
-  solicitudes: Solicitud[];
+  solicitudes: SolicitudDTO[];
   documentosSolicitados: any;
+  estado: Estados;
+  
 
   constructor(private genericService: GenericService) {
     this.solicitudes = [];

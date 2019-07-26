@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Estudiante } from 'src/app/models/Estudiante';
 import { GenericService } from 'src/app/shared/services/generic-service';
-import { Solicitud } from 'src/app/models/Solicitud';
+import { Solicitud, SolicitudDTO } from 'src/app/models/Solicitud';
 declare var $:any;
 @Component({
   selector: 'app-solicitud',
@@ -69,7 +69,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   enviarSolicitud(estudianteId: string, documentosSeleccionados: any){
-    let solicitud = new Solicitud(estudianteId, documentosSeleccionados);
+    let solicitud = new SolicitudDTO(estudianteId, documentosSeleccionados);
     this.genericService.crear(this.componentUrl, solicitud, () => {
       this.documentosSeleccionados = [];
     })
