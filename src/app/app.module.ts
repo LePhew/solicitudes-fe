@@ -17,6 +17,7 @@ import { HistorialSolicitudComponent } from './components/historial-solicitud/hi
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { GenericService } from './shared/services/generic-service';
 import { HomeComponent } from './admin/components/home/home.component';
+import { SolicitudAdminComponent } from './admin/components/solicitud-admin/solicitud-admin.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HomeComponent } from './admin/components/home/home.component';
     SolicitudComponent,
     HistorialSolicitudComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    SolicitudAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -20,7 +20,7 @@ export class HistorialSolicitudComponent implements OnInit {
 
   solicitudes: SolicitudDTO[];
   documentosSolicitados: any;
-  estado: Estados;
+  estado = Estados;
   
 
   constructor(private genericService: GenericService) {
