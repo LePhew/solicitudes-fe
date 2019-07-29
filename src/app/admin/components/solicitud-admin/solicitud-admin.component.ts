@@ -15,8 +15,11 @@ export class SolicitudAdminComponent implements OnInit {
 
   solicitudes: any;
   solicitud: any;
-  estado = Estados;
   documentosSolicitados: any;
+  solicitudAEditar: any;
+
+  estado = Estados;
+  editMode = false;
 
   constructor(private genericService: GenericService) { }
 
@@ -40,4 +43,11 @@ export class SolicitudAdminComponent implements OnInit {
     modal.open();
    }
 
+   traerSolicitud(solicitudId: string){
+    this.genericService.getById(this.componentUrl, solicitudId, (solicitud) => {
+      this.editMode = true;
+      this.solicitudAEditar = solicitud;
+      console.log(this.solicitudAEditar);
+    })
+   }
 }

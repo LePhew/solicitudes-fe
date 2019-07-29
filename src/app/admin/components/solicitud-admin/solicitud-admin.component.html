@@ -1,31 +1,43 @@
 <app-navbar [pagename]="pagename" ></app-navbar>
 <div class="container">
-<div class="row">
-    <div class="col m12">
-    <table class="highlight">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Creada</th>
-                <th>Modificada</th>
-                <th>Estado</th>
-                <th>Opciones</th>
-                <th></th>
+    <div class="row">
+        <div class="col m12">
+        <table class="highlight">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Creada</th>
+                    <th>Modificada</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                    <th></th>
+                </tr>
+            </thead>
+        <tbody>     
+            <tr *ngFor="let solicitud of solicitudes">
+                <td>{{ solicitud.solicitudCode | uppercase }}</td>
+                <td>{{ solicitud.creada | date }}</td>
+                <td>{{ solicitud.modificada | date }}</td>
+                <td>{{ estado[solicitud.estado] }}</td>
+                <td><button (click)="traerSolicitud(solicitud.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
+                <td><button (click)="showDocumento(solicitud.documentos)" class="btn btn-small waves-effect waves-light light-blue"><i class="material-icons">details</i></button></td>
             </tr>
-        </thead>
-    <tbody>     
-        <tr *ngFor="let solicitud of solicitudes">
-            <td>{{ solicitud.solicitudCode | uppercase }}</td>
-            <td>{{ solicitud.creada | date }}</td>
-            <td>{{ solicitud.modificada | date }}</td>
-            <td>{{ estado[solicitud.estado] }}</td>
-            <td><button (click)="traerSolicitud(solicitud.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
-            <td><button (click)="showDocumento(solicitud.documentos)" class="btn btn-small waves-effect waves-light light-blue"><i class="material-icons">details</i></button></td>
-        </tr>
-    </tbody>
-    </table>
+        </tbody>
+        </table>
+        </div>
     </div>
-</div>
+    <div *ngIf="editMode" class="row">
+        <h6>Editando {{ solicitudAEditar.estudianteId | uppercase}}</h6>
+        <div class="input-field col m12">
+            <select name="estado" [(ngModel)]="solicitudAEditar.estado" class="browser-default">
+                <option [value]="0">{{ estado[0] }}</option>
+                <option [value]="1">{{ estado[1] }}</option>
+                <option [value]="2">{{ estado[2] }}</option>
+                <option [value]="3">{{ estado[3] }}</option>
+                <option [value]="4">{{ estado[4] }}</option>
+            </select>     
+        </div>
+    </div>
 </div>
 <div id="modal" class="modal">
     <div class="modal-content">

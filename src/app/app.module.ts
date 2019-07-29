@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
+import { EnumPipe } from '../app/models/Pipes';
 
 import { NivelComponent } from './admin/components/nivel/nivel.component';
 import { DocumentoComponent } from './admin/components/documento/documento.component';
@@ -30,7 +31,8 @@ import { SolicitudAdminComponent } from './admin/components/solicitud-admin/soli
     HistorialSolicitudComponent,
     NavbarComponent,
     HomeComponent,
-    SolicitudAdminComponent
+    SolicitudAdminComponent,
+    EnumPipe
   ],
   imports: [
     BrowserModule,
