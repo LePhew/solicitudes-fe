@@ -14,28 +14,7 @@ export class SolicitudDTO {
 export class Solicitud {
 
         constructor(
-            
-            public id: string,
-            
-            
-            public solicitudCode: string,
-            
-            
-            public estudiante: Estudiante,
-            
-            
-            public estudianteId: string,
-            
-            
-            public documentos: Documento[],
-        
-            
-            public creada: Date,
-        
-            
-            public modificada: Date,
-        
-            
-            public estado: Estados
+            public id?: string,
+            public estado?: Estados
         ){}
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Estados } from 'src/app/models/Enum';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import * as M from 'materialize-css';
+import { Solicitud } from 'src/app/models/Solicitud';
 
 @Component({
   selector: 'app-solicitud-admin',
@@ -17,6 +18,7 @@ export class SolicitudAdminComponent implements OnInit {
   solicitud: any;
   documentosSolicitados: any;
   solicitudAEditar: any;
+  newEstado: any;
 
   estado = Estados;
   editMode = false;
@@ -45,9 +47,16 @@ export class SolicitudAdminComponent implements OnInit {
 
    traerSolicitud(solicitudId: string){
     this.genericService.getById(this.componentUrl, solicitudId, (solicitud) => {
-      this.editMode = true;
+      this.editMode = !this.editMode;
       this.solicitudAEditar = solicitud;
       console.log(this.solicitudAEditar);
+    })
+   }
+   actualizarSolicitud(solicitudId: string){
+    this.genericService.actualizar(this.componentUrl, solicitudId, {estado: this.solicitudAEditar.estado}, () => {
+      console.log(this.solicitudAEditar);
+      this.editMode = false;
+      this.getSolicitudes();
     })
    }
 }

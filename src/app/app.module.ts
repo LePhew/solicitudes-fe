@@ -19,6 +19,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { GenericService } from './shared/services/generic-service';
 import { HomeComponent } from './admin/components/home/home.component';
 import { SolicitudAdminComponent } from './admin/components/solicitud-admin/solicitud-admin.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SolicitudAdminComponent } from './admin/components/solicitud-admin/soli
     NavbarComponent,
     HomeComponent,
     SolicitudAdminComponent,
-    EnumPipe
+    EnumPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

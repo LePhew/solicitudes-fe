@@ -30,6 +30,14 @@ import Swal from 'sweetalert2';
         });
     }
 
+    getByMat(componentUrl: string, payload:any, successCallback: any = ()=>{}){
+        this.http.get(this.baseUrl + componentUrl+payload).subscribe((response: any) => {
+            successCallback(response);
+        }, (error) => {
+            console.log(error);
+        });
+    }
+
     crear(componentUrl: string, payload: any, successCallback: any = ()=>{}){
         this.http.post(this.baseUrl + componentUrl, payload).subscribe((response: any) => {
             successCallback(response);

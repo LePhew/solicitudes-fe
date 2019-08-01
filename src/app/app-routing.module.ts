@@ -7,11 +7,13 @@ import { NivelComponent } from './admin/components/nivel/nivel.component';
 import { SolicitudComponent } from './components/solicitud/solicitud.component';
 import { HistorialSolicitudComponent } from './components/historial-solicitud/historial-solicitud.component';
 import { SolicitudAdminComponent } from './admin/components/solicitud-admin/solicitud-admin.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
-  {path: '', component: SolicitudComponent},
-  {path: 'solicitudes', component: HistorialSolicitudComponent},
+  {path: '', component: LoginComponent},
+  {path: 'solicitudes', component: SolicitudComponent},
+  {path: 'historial', component: HistorialSolicitudComponent},
   {path: 'admin', component: HomeComponent},
   {path: 'admin/documento', component: DocumentoComponent},
   {path: 'admin/institucion', component: InstitucionComponent},

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Estudiante } from 'src/app/models/Estudiante';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import { Solicitud, SolicitudDTO } from 'src/app/models/Solicitud';
@@ -14,7 +14,8 @@ export class SolicitudComponent implements OnInit {
   readonly componentUrl: string = "solicitud/";
   readonly estudianteUrl: string = "estudiante/";
   readonly documentoUrl: string = "documento/";
-
+  
+  matricula: string = "2019-3673"
   documentos: any;
   estudiante: Estudiante;
   solicitudes: any;
@@ -23,14 +24,15 @@ export class SolicitudComponent implements OnInit {
 
   constructor(private genericService: GenericService) {
       this.estudiante = new Estudiante("","","",null,"");
+      
+    }
+
+  ngOnInit() {
       this.getEstudiante();
       this.getDocumentos();
       this.getSolicitudes();
       this.jquery_code();
-    }
-
-  ngOnInit() {
-    
+      
   }
 
   jquery_code(){
@@ -38,9 +40,9 @@ export class SolicitudComponent implements OnInit {
       $('.collapsible').collapsible();
     });
   }
-  
+
   getEstudiante(){
-    this.genericService.getById(this.estudianteUrl, "4132070a-ff74-42aa-8c32-8f0b7d613229", (estudiante) => {
+    this.genericService.getByMat(this.estudianteUrl+"bymat/", this.matricula, (estudiante) => {
       this.estudiante = estudiante;
       this.editMode = false;
     });
