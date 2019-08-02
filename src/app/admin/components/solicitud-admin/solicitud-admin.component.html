@@ -58,13 +58,13 @@
                 <tr *ngFor="let documento of documentosSolicitados">
                     <td>{{ documento.nombre }}</td>
                     <td>{{ documento.descripcion }}</td>
-                    <td>{{ documento.institucionId }}</td>
-                    <td>{{ documento.nivelId }}</td>
+                    <td>{{ documento.institucion.nombre }}</td>
+                    <td>{{ documento.nivel.nombre }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="modal-footer">
-        <a [routerLink] = "['/admin/solicitud']" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        <a [routerLink] = "['/admin/solicitud']" class="modal-close btn light-blue">Cerrar</a>
     </div>
 </div>

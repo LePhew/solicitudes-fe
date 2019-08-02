@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   login(){
     this.genericService.getByMat(this.componentUrl+"bymat/", this.matricula, (estudiante) => {
       if(estudiante){
+        localStorage.setItem('matricula', estudiante.matricula);
+        localStorage.setItem('nivelId', estudiante.nivel.id);
+        localStorage.setItem('institucionId', estudiante.institucion.id);
         this._router.navigate(['/solicitudes']);
       }else{
         Swal.fire('Error', 'No se pudo encontrar tu matrícula', 'error');

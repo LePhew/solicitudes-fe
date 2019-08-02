@@ -5,7 +5,7 @@
                 <div class="card">
                 <h5>Tu información</h5>
                 <div class="card-content">
-                    <ul>
+                    <ul *ngIf="estudiante">
                         <li><b>Nombres:</b> {{ estudiante.nombres }} {{ estudiante.apellidos }}</li>
                         <li><b>Nivel:</b> {{ estudiante.nivel.nombre }}</li>
                         <li><b>Institución: </b>{{ estudiante.institucion.nombre }}</li>

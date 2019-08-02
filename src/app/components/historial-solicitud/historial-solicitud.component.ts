@@ -16,11 +16,16 @@ export class HistorialSolicitudComponent implements OnInit {
   
   readonly solicitudesUrl: string = "solicitud/";
   readonly documentosUrl: string = "documento/";
+  readonly estudianteUrl: string = "estudiante/";
   readonly pagename = "Historial de Solicitudes";
 
+  readonly matricula = localStorage.getItem('matricula');
+  
   solicitudes: SolicitudDTO[];
   documentosSolicitados: any;
   estado = Estados;
+  estudiante: any;
+
   
 
   constructor(private genericService: GenericService) {
@@ -28,15 +33,22 @@ export class HistorialSolicitudComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getSolicitudes();
+    this.getEstudiante();
     M.AutoInit()
   }
 
-  getSolicitudes(){
+  /* getSolicitudes(){
     this.genericService.getAll(this.solicitudesUrl, (solicitudes) => {
       this.solicitudes = solicitudes;
       console.log(this.solicitudes);
     })
+  } */
+
+  getEstudiante(){
+    this.genericService.getByMat(this.estudianteUrl+"bymat/", this.matricula, (estudiante) => {
+      this.estudiante = estudiante;
+      this.solicitudes = estudiante.solicitudes;
+    });
   }
 
   showDocumento(documentos: any){

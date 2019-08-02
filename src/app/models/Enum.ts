@@ -1,3 +1,3 @@
 export enum Estados {
-    Activa, EnProceso, Aprovada, Rechazada, Cerrada
+    Activa, EnProceso, Aprobada, Rechazada, Cerrada
 }

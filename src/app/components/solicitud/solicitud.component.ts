@@ -15,7 +15,7 @@ export class SolicitudComponent implements OnInit {
   readonly estudianteUrl: string = "estudiante/";
   readonly documentoUrl: string = "documento/";
   
-  matricula: string = "2019-3673"
+  matricula: string = localStorage.getItem('matricula');
   documentos: any;
   estudiante: Estudiante;
   solicitudes: any;
@@ -23,14 +23,12 @@ export class SolicitudComponent implements OnInit {
   documentosSeleccionados: Array<any> = [];
 
   constructor(private genericService: GenericService) {
-      this.estudiante = new Estudiante("","","",null,"");
       
     }
 
   ngOnInit() {
       this.getEstudiante();
       this.getDocumentos();
-      this.getSolicitudes();
       this.jquery_code();
       
   }
@@ -49,10 +47,16 @@ export class SolicitudComponent implements OnInit {
   }
 
   getDocumentos(){
-    this.genericService.getAll(this.documentoUrl, (documentos) => {
+    let data = {
+      institucionId: localStorage.getItem('institucionId'),
+      nivelId: localStorage.getItem('nivelId')
+    }
+    this.genericService.getEstudianteDocs(this.documentoUrl+"withparam/estudiante",data, (documentos) => {
       this.documentos = documentos;
     });
   }
+
+  
 
   getSolicitudes(){
     this.genericService.getAll(this.componentUrl, (solicitudes) => {
