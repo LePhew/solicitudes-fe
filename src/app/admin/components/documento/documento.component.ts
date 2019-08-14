@@ -3,7 +3,7 @@ import { GenericService } from 'src/app/shared/services/generic-service';
 import { Documento, DocumentoDTO } from 'src/app/models/Documento';
 import { Nivel } from 'src/app/models/Nivel';
 import { Institucion } from 'src/app/models/Institucion';
-
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-documento',
@@ -30,6 +30,7 @@ export class DocumentoComponent implements OnInit {
 
 
   jquery_code(){
+    M.AutoInit();
   }
 
   ngOnInit() {

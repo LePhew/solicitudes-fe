@@ -1,17 +1,10 @@
 <app-navbar [pagename]="pagename" ></app-navbar>
 <div class="container">
     <div class="row">
+        <app-filter></app-filter>
+    </div>
+    <div class="row">
         <div class="col m12">
-        <div class="row">
-                <select class="col offset-l6">
-                        <option class="option disabled" value="">First option</option>
-                </select>
-            <div class="input-field">
-                <input id="search" type="text">
-                <label for="search">Introduce el criterio</label>
-            </div>
-            
-        </div>
         <table class="highlight">
             <thead>
                 <tr>
