@@ -1,0 +1,95 @@
+<app-navbar [pagename] = "pagename"></app-navbar>
+<div class="container">
+<div class="row"><h5>Añadir o modificar Estudiante</h5></div>
+<div class="row padded">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input [(ngModel)]="estudiante.nombres" name="nombres" id="nombres" type="text" class="validate">
+          <label for="nombres">Nombres</label>
+        </div>
+        <div class="input-field col s6">
+          <input [(ngModel)]="estudiante.apellidos" name="apellidos" id="apellidos" type="text" class="validate">
+          <label for="apellidos">Apellidos</label>
+        </div>
+        <div class="input-field col s6">
+            <input [(ngModel)]="estudiante.matricula" name="matricula" id="matricula" type="text" class="validate">
+            <label for="matricula">Matricula</label>
+          </div>
+          <div class="input-field col s6">
+            <input [(ngModel)]="estudiante.cedula" name="cedula" id="cedula" type="text" class="validate">
+            <label for="cedula">Cédula</label>
+          </div>
+      </div>  
+      <div class="input-field col s6">
+        <input [(ngModel)]="estudiante.estado" name="estado" id="estado" type="text" class="validate">
+        <label for="estado">Estado</label>
+      </div>
+  </div>  
+      <div class="row">
+          <div class="input-field col s6">
+          <mat-form-field style="width: 100%">
+            <mat-label>Niveles</mat-label>
+            <mat-select name="nivelId" [(ngModel)]="estudiante.nivelId">
+              <mat-option *ngFor="let nivel of niveles" [value]="nivel.id">
+                {{nivel.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+          <div class="input-field col s6">
+              <mat-form-field style="width: 100%">
+                <mat-label>Instituciones</mat-label>
+                <mat-select name="institucionId"  [(ngModel)]="estudiante.institucionId" >
+                  <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
+                    {{institucion.nombre}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+        </div>
+        <div class="row">
+            <button (click)="AñadirEstudiante()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
+            <button *ngIf="editMode" (click) = "traerEstudiante(estudiante.id, estudiante)" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
+        </div>
+    </form>
+    <div class="row">
+      <h5>
+        Selecciona un registro para editarlo.
+      </h5>
+    </div>
+    <div class="row">
+       <app-filter></app-filter>
+    </div>
+    <div class="row">
+      <div class="col l12">
+          <table>
+              <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Matricula</th>
+                    <th>Cédula</th>
+                    <th>Nivel</th>
+                    <th>Institución</th>
+                    <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let estudiante of estudiantes">
+                  <td>{{ estudiante.nombres }}</td>
+                  <td>{{ estudiante.apellidos }}</td>
+                  <td>{{ estudiante.matricula }}</td>
+                  <td>{{ estudiante.cedula }}</td>
+                  <td>{{ documento.nivel.nombre }}</td>
+                  <td>{{ documento.institucion.nombre }}</td>
+                  <td><button (click)="traerDocumento(estudiante.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
