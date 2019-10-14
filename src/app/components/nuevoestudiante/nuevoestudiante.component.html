@@ -1,0 +1,46 @@
+<app-navbar [pagename] = "pagename"></app-navbar>
+<div class="container">
+<div class="row"><h5>Estudiante</h5></div>
+<div class="row padded">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input [(ngModel)]="estudiante.nombre" name="nombre" id="nombre" type="text" class="validate">
+          <label for="nombre">Nombres</label>
+        </div>
+        <div class="input-field col s6">
+          <input [(ngModel)]="estudiante.apellidos" name="apellidos" id="apellidos" type="text" class="validate">
+          <label for="apellidos">Apellidos</label>
+        </div>
+      </div>  
+      <div class="row">
+          <div class="input-field col s6">
+          <mat-form-field style="width: 100%">
+            <mat-label>Niveles</mat-label>
+            <mat-select name="nivelId" [(ngModel)]="estudiante.nivelId">
+              <mat-option *ngFor="let nivel of niveles" [value]="nivel.id">
+                {{nivel.nombre}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+          <div class="input-field col s6">
+              <mat-form-field style="width: 100%">
+                <mat-label>Instituciones</mat-label>
+                <mat-select name="institucionId"  [(ngModel)]="estudiante.institucionId" >
+                  <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
+                    {{institucion.nombre}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+        </div>
+        <div class="row">
+            <button (click)="crearEstudiante()" class="btn-large waves-effect waves-light light-blue right">Crear</button>
+            <button *ngIf="editMode" (click) = "actualizarEstudiante(estudiante.id, estudiante)" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
+        </div>
+    </form>
+</div>
+</div>
+
+    

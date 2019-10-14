@@ -21,6 +21,7 @@ import { HomeComponent } from './admin/components/home/home.component';
 import { SolicitudAdminComponent } from './admin/components/solicitud-admin/solicitud-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { FilterComponent } from './shared/filter/filter.component';
+import { NuevoEstudianteComponent } from './components/nuevoestudiante/nuevoestudiante.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FilterComponent } from './shared/filter/filter.component';
     SolicitudAdminComponent,
     EnumPipe,
     LoginComponent,
-    FilterComponent
+    FilterComponent,
+    NuevoEstudianteComponent
   ],
   imports: [
     BrowserModule,

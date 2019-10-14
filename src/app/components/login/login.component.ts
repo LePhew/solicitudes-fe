@@ -2,7 +2,6 @@ import { Component, OnInit, Output } from '@angular/core';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-login',
@@ -29,8 +28,9 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('nivelId', estudiante.nivel.id);
         localStorage.setItem('institucionId', estudiante.institucion.id);
         this._router.navigate(['/solicitudes']);
-      }else{
-        Swal.fire('Error', 'No se pudo encontrar tu matrícula', 'error');
+      }
+      else{
+        this._router.navigate(['/nuevo'])
       }
       
     })
