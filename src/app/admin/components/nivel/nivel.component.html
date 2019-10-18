@@ -30,21 +30,22 @@
       </h5>
     </div>
     <div class="row">
+      <app-filter (searchCriteria) = "filtrar($event)" ></app-filter>
+   </div>
+    <div class="row">
       <div class="col m12 s12">
           <table>
               <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
-                    <th>Orden</th>
                     <th>Opciones</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let nivel of niveles">
                   <td>{{ nivel.nombre }}</td>
-                  <td>{{ nivel.descripcion }}</td>
-                  <td>{{ nivel.orden }}</td>
+                  <td>Esta es una definición de un nivel educativo en el sistema, sirve para agrupar documentos</td>
                   <td><button (click)="traerNivel(nivel.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
                   <td><button (click)="borrarNivel(nivel.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">delete</i></button></td>
                 </tr>

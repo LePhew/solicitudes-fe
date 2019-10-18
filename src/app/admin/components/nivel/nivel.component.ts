@@ -16,6 +16,8 @@ export class NivelComponent implements OnInit {
   niveles: any[];
   nivel: NivelDTO;
   editMode: boolean = false;
+  receivedValue: string;
+
   @ViewChild('formNivel',{static: false}) formNivel;
   
   constructor(private genericService: GenericService) {
@@ -38,6 +40,10 @@ export class NivelComponent implements OnInit {
       this.formNivel.resetForm();
     });
     
+  }
+
+  filtrar(criteria: string){
+    this.receivedValue = criteria;
   }
 
   borrarNivel(id: string){

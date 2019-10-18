@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Estados } from 'src/app/models/Enum';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import * as M from 'materialize-css';
-import { Solicitud } from 'src/app/models/Solicitud';
 
 @Component({
   selector: 'app-solicitud-admin',
@@ -13,17 +12,19 @@ export class SolicitudAdminComponent implements OnInit {
 
   readonly pagename: string = "Gestión de solicitudes";
   readonly componentUrl: string = "solicitud/";
-
+  
   solicitudes: any;
   solicitud: any;
   documentosSolicitados: any;
   solicitudAEditar: any;
   newEstado: any;
 
+  receivedValue: string;
   estado = Estados;
   editMode = false;
 
-  constructor(private genericService: GenericService) { }
+  constructor(
+    private genericService: GenericService) { }
 
   ngOnInit() {
     this.getSolicitudes();
@@ -34,6 +35,10 @@ export class SolicitudAdminComponent implements OnInit {
     this.genericService.getAll(this.componentUrl, (solicitudes) => {
       this.solicitudes = solicitudes;
     })
+  }
+
+  filtrar(criteria: string){
+    this.receivedValue = criteria;
   }
 
   showDocumento(documentos: any){
