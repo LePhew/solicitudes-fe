@@ -12,14 +12,14 @@ export class SolicitudAdminComponent implements OnInit {
 
   readonly pagename: string = "Gestión de solicitudes";
   readonly componentUrl: string = "solicitud/";
+  readonly searchUrl: string = "solicitud/buscar/";
   
-  solicitudes: any;
+  solicitudes: any[];
   solicitud: any;
   documentosSolicitados: any;
   solicitudAEditar: any;
-  newEstado: any;
+  newEstado: any;q
 
-  receivedValue: string;
   estado = Estados;
   editMode = false;
 
@@ -37,8 +37,14 @@ export class SolicitudAdminComponent implements OnInit {
     })
   }
 
-  filtrar(criteria: string){
-    this.receivedValue = criteria;
+
+  //Método para búsqueda
+  filtrar(criteria: any){
+    console.log(criteria);
+    this.genericService.buscar(this.searchUrl, {criteria}, (res) => {
+      console.log(res);
+      this.solicitudes = res;
+    })
   }
 
   showDocumento(documentos: any){
