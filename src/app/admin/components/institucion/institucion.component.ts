@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import { Institucion, InstitucionDTO } from 'src/app/models/Institucion';
+import Swal from 'sweetalert2';
 declare var $:any;
 
 @Component({
@@ -39,11 +40,23 @@ export class InstitucionComponent implements OnInit {
   }
 
   borrarInstitucion(id: string){
+    Swal.fire({
+      title: 'Desea Realizar esta operacion?',
+      text: "Al Borrar este fiche producira Cambios irreversible",
+      type: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.value) {
     this.genericService.borrar(this.componentUrl, id, () => {
       this.getInstituciones();
-    });
-  }
-
+});
+}
+})
+}
   traerInstitucion(id: string){
     this.genericService.getById(this.componentUrl, id, (institucion) => {
       this.institucion = institucion;
@@ -52,11 +65,25 @@ export class InstitucionComponent implements OnInit {
   }
 
   actualizarInstitucion(id: string, institucion: Partial<InstitucionDTO>){
+    Swal.fire({
+      title: 'Desea Realizar esta operacion?',
+      text: "Al actulaizar producira Cambios en el Fichero ",
+      type: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.value) {
     this.genericService.actualizar(this.componentUrl, id, institucion, () => {
       this.institucion = new InstitucionDTO("","");
       this.editMode = false;
       this.getInstituciones();
-    })
+    });
   }
-
+})
 }
+}
+
+

@@ -48,22 +48,7 @@ import Swal from 'sweetalert2';
     crear(componentUrl: string, payload: any, successCallback: any = ()=>{}){
      this.http.post(this.baseUrl + componentUrl, payload).subscribe((response: any) => {
     successCallback(response);
-            Swal.fire({
-                title: 'Desea Realizar esta operacion?',
-                text: "Esta Función Va a producir Cambios importates en el Sistema ",
-                type: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Aceptar',
-                cancelButtonText:'Cancelar'
-              }).then((result) => {
-                if (result.value) {
-                  Swal.fire("Éxito!","Creado exitosamente", "success");
-
-                }
-              })
-            
+    Swal.fire("Éxito!","Creado exitosamente", "success");
         }, (error) => {
             console.log(error);
         });
@@ -71,21 +56,8 @@ import Swal from 'sweetalert2';
 
     actualizar(componentUrl: string,id:string , payload: any, successCallback: any = ()=>{}){
         this.http.put(this.baseUrl + componentUrl+id, payload).subscribe((response: any) => {
-            successCallback(response);
-            Swal.fire({
-                title: 'Desea Realizar esta operacion?',
-                text: "Al actulaizar producira Cambios en el Fichero ",
-                type: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Aceptar',
-                cancelButtonText:'Cancelar'
-              }).then((result) => {
-                if (result.value) {
-                  Swal.fire("Éxito!","Actualizado exitosamente", "success");
-                }
-              })
+         successCallback(response);
+        Swal.fire("Éxito!","Actualizado exitosamente", "success");      
         }, (error) => {
             console.log(error);
         });
@@ -93,21 +65,8 @@ import Swal from 'sweetalert2';
 
     borrar(componentUrl: string, payload: any, successCallback:any = ()=>{}){
         this.http.delete(this.baseUrl+componentUrl+payload).subscribe((response: any) => {
-            successCallback(response);
-            Swal.fire({
-                title: 'Desea Realizar esta operacion?',
-                text: "Al Borrar este fiche producira Cambios irreversible",
-                type: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Aceptar',
-                cancelButtonText:'Cancelar'
-              }).then((result) => {
-                if (result.value) {
-                  Swal.fire("Éxito!","Eliminado exitosamente", "success");
-                }
-              })
+        successCallback(response);
+        Swal.fire("Éxito!","Eliminado exitosamente", "success");
         }), (error) => {
             console.log(error);
         }

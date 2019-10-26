@@ -4,7 +4,7 @@ import { Documento, DocumentoDTO } from 'src/app/models/Documento';
 import { Nivel } from 'src/app/models/Nivel';
 import { Institucion } from 'src/app/models/Institucion';
 import * as M from 'materialize-css';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-documento',
   templateUrl: './documento.component.html',
@@ -67,10 +67,23 @@ export class DocumentoComponent implements OnInit {
   }
 
   borrarDocumento(id: string){
-    this.genericService.borrar(this.componentUrl, id, () => {
+    Swal.fire({
+      title: 'Desea Realizar esta operacion?',
+      text: "Al Borrar este fiche producira Cambios irreversible",
+      type: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+      this.genericService.borrar(this.componentUrl, id, () => {
       this.getDocumentos();
     });
-  }
+    }
+ })
+}
 
   traerDocumento(id: string){
     this.genericService.getById(this.componentUrl, id, (documento) => {
@@ -82,15 +95,24 @@ export class DocumentoComponent implements OnInit {
   }
 
   actualizarDocumento(id: string, documento: Partial<DocumentoDTO>){
-    this.genericService.actualizar(this.componentUrl, id, documento, () => {
-      this.documento = new DocumentoDTO("","","","");
-      this.editMode = false;
-      this.getDocumentos();
+    Swal.fire({
+      title: 'Desea Realizar esta operacion?',
+      text: "Al actulaizar producira Cambios en el Fichero ",
+      type: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+          this.genericService.actualizar(this.componentUrl, id, documento, () => {
+          this.documento = new DocumentoDTO("","","","");
+          this.editMode = false;
+          this.getDocumentos();
+        });
+      }
     })
-  }
-
-  
-
-
-
 }
+}
+

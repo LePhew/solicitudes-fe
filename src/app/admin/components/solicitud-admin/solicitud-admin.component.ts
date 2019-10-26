@@ -3,7 +3,7 @@ import { Estados } from 'src/app/models/Enum';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import * as M from 'materialize-css';
 import { Solicitud } from 'src/app/models/Solicitud';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-solicitud-admin',
   templateUrl: './solicitud-admin.component.html',
@@ -53,10 +53,23 @@ export class SolicitudAdminComponent implements OnInit {
     })
    }
    actualizarSolicitud(solicitudId: string){
+    Swal.fire({
+      title: 'Desea Realizar esta operacion?',
+      text: "Al actulaizar producira Cambios en el Fichero ",
+      type: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.value) {
     this.genericService.actualizar(this.componentUrl, solicitudId, {estado: this.solicitudAEditar.estado}, () => {
       console.log(this.solicitudAEditar);
       this.editMode = false;
       this.getSolicitudes();
-    })
-   }
+    });
+  }
+})
+}
 }
