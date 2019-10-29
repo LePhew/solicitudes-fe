@@ -6,9 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-
+  
   @Input() pagename : string;
+  @Input() isAdminPage: boolean;
+
+  
   constructor() { }
 
   ngOnInit() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import { Institucion, InstitucionDTO } from 'src/app/models/Institucion';
+import Swal from 'sweetalert2';
 declare var $:any;
 
 @Component({
@@ -39,9 +40,18 @@ export class InstitucionComponent implements OnInit {
   }
 
   borrarInstitucion(id: string){
-    this.genericService.borrar(this.componentUrl, id, () => {
-      this.getInstituciones();
-    });
+    Swal.fire({
+      title: "Está seguro de que quiere borrar este registro?",
+      text: "Esta acción es irreversible",
+      showCancelButton:true,
+      confirmButtonText: "Sí",
+      cancelButtonText:"Cancelar",
+      type: "warning"
+    }).then(() => {
+      this.genericService.borrar(this.componentUrl, id, () => {
+        this.getInstituciones();
+      });
+    })
   }
 
   traerInstitucion(id: string){

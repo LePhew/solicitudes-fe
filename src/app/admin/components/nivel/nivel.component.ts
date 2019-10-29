@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NivelDTO } from 'src/app/models/Nivel';
 import { GenericService } from 'src/app/shared/services/generic-service';
-import { FormGroup } from '@angular/forms';
+
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-nivel',
@@ -47,9 +48,18 @@ export class NivelComponent implements OnInit {
   }
 
   borrarNivel(id: string){
-    this.genericService.borrar(this.componentUrl, id, () => {
-      this.getNiveles();
-    });
+    Swal.fire({
+      title: "Está seguro de que quiere borrar este registro?",
+      text: "Esta acción es irreversible",
+      showCancelButton:true,
+      confirmButtonText: "Sí",
+      cancelButtonText:"Cancelar",
+      type: "warning"
+    }).then(() => {
+      this.genericService.borrar(this.componentUrl, id, () => {
+        this.getNiveles();
+      });
+    })
   }
 
   traerNivel(id: string){

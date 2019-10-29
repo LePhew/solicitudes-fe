@@ -1,6 +1,5 @@
 import { Documento } from './Documento';
 import { Estados } from './Enum';
-import { Estudiante } from './Estudiante';
 
 export class SolicitudDTO {
 

@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
   readonly pagename:string = "Sistema de Solicitudes";
   readonly componentUrl: string = "estudiante/";
 
-  matricula: string = "";
+  cedula: string = "";
+  contrasena: string = "";
 
   constructor(private genericService: GenericService, private _router: Router) { }
 
@@ -22,15 +23,28 @@ export class LoginComponent implements OnInit {
 
 
   login(){
-    this.genericService.getByMat(this.componentUrl+"bymat/", this.matricula, (estudiante) => {
+    this.genericService.getByCed(this.componentUrl+"byced/", this.cedula, (estudiante) => {
       if(estudiante){
         localStorage.setItem('matricula', estudiante.matricula);
+        localStorage.setItem('cedula', estudiante.cedula);
         localStorage.setItem('nivelId', estudiante.nivel.id);
         localStorage.setItem('institucionId', estudiante.institucion.id);
         this._router.navigate(['/solicitudes']);
       }
       else{
-        this._router.navigate(['/nuevo'])
+        Swal.fire({
+          title: "Usuario no encontrado",
+          text: "Desea crear un nuevo usuario",
+          type: "info",
+          showCancelButton: true,
+          cancelButtonText: "No",
+          confirmButtonText: "Sí"
+        }).then(response => {
+          if(response.value){
+            this._router.navigate(['/nuevo']);
+          }
+        })
+        
       }
       
     })

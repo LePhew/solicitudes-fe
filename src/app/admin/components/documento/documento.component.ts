@@ -4,6 +4,8 @@ import { Documento, DocumentoDTO } from 'src/app/models/Documento';
 import { Nivel } from 'src/app/models/Nivel';
 import { Institucion } from 'src/app/models/Institucion';
 import * as M from 'materialize-css';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-documento',
@@ -67,9 +69,18 @@ export class DocumentoComponent implements OnInit {
   }
 
   borrarDocumento(id: string){
-    this.genericService.borrar(this.componentUrl, id, () => {
-      this.getDocumentos();
-    });
+    Swal.fire({
+      title: "Está seguro de que quiere borrar este registro?",
+      text: "Esta acción es irreversible",
+      showCancelButton:true,
+      confirmButtonText: "Sí",
+      cancelButtonText:"Cancelar",
+      type: "warning"
+    }).then(() => {
+        this.genericService.borrar(this.componentUrl, id, () => {
+          this.getDocumentos();
+        });
+    })
   }
 
   traerDocumento(id: string){
