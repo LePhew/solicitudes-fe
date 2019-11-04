@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { GenericService } from '../../shared/services/generic-service'; 
 import { Nivel } from 'src/app/models/Nivel';
 import { Institucion } from 'src/app/models/Institucion';
-import { EstudianteDTO }  from 'src/app/models/Estudiante';
+import { EstudianteDTO, Estudiante }  from 'src/app/models/Estudiante';
 
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
@@ -23,15 +23,17 @@ export class NuevoEstudianteComponent implements OnInit {
 
   niveles: Nivel[];
   instituciones: Institucion[];
-  estudianteDTO: EstudianteDTO;
+  estudiante: Estudiante;
 
-  constructor(private genericService: GenericService, private _router: Router) {}
+  constructor(private genericService: GenericService, private _router: Router) {
+    this.estudiante = new Estudiante("","","","",null,null,"");
+  }
   
   ngOnInit() {
     M.AutoInit();
-    this.askForCed();
-    this.getInstituciones();
     this.getNiveles();
+    this.getInstituciones();
+    this.askForCed();
   }
 
 
@@ -48,7 +50,7 @@ export class NuevoEstudianteComponent implements OnInit {
   }
 
   crearEstudiante(){
-    this.genericService.crear(this.estudianteUrl, this.estudianteDTO, () => {
+    this.genericService.crear(this.estudianteUrl, this.estudiante, () => {
       this._router.navigate(['/']);
     })
   }
@@ -60,7 +62,6 @@ export class NuevoEstudianteComponent implements OnInit {
       confirmButtonText: "Ok"
     })
     .then(response => {
-      console.log(response);
       if(response.dismiss == Swal.DismissReason.esc){
         Swal.fire({
           title:"Ha decidido no ingresar cédula",
@@ -72,7 +73,7 @@ export class NuevoEstudianteComponent implements OnInit {
         })
       }
       else if(response.value.match('[0-9]{3}-[0-9]{7}-[0-9]')){
-        this.estudianteDTO.cedula = response.value;
+        this.estudiante.cedula = response.value;
       }
       else{
         Swal.fire({

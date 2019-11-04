@@ -9,6 +9,7 @@ import { HistorialSolicitudComponent } from './components/historial-solicitud/hi
 import { SolicitudAdminComponent } from './admin/components/solicitud-admin/solicitud-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { NuevoEstudianteComponent } from './components/nuevoestudiante/nuevoestudiante.component';
+import { EstudianteComponent } from './admin/components/estudiante/estudiante.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'admin/institucion', component: InstitucionComponent},
   {path: 'admin/nivel', component: NivelComponent},
   {path: 'admin/solicitud', component: SolicitudAdminComponent},
+  {path: 'admin/estudiante', component: EstudianteComponent},
   {path: 'nuevo', component: NuevoEstudianteComponent }
 ];
 

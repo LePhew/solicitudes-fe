@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-wrapper light-blue">
       <span class="center brand-logo">{{ pagename }}</span>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul *ngIf="isAdminPage" style="position: relative;" id="nav-mobile" class="right hide-on-med-and-down">
           <li><a href="">Notificaciones <span class="badge">10</span></a></li>
       </ul>
     </div>

@@ -5,19 +5,29 @@
     <form class="col s12">
       <div class="row">
         <div class="input-field col s6">
-          <input [(ngModel)]="estudiante.nombre" name="nombre" id="nombre" type="text" class="validate">
-          <label for="nombre">Nombres</label>
+          <input [(ngModel)]="estudiante.nombres" name="nombres" id="nombres" type="text" class="validate">
+          <label for="nombres">Nombres</label>
         </div>
         <div class="input-field col s6">
           <input [(ngModel)]="estudiante.apellidos" name="apellidos" id="apellidos" type="text" class="validate">
           <label for="apellidos">Apellidos</label>
         </div>
-      </div>  
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input [(ngModel)]="estudiante.cedula" name="cedula" id="cedula" type="text" class="validate">
+          <label for="cedula">Cédula</label>
+        </div>
+        <div class="input-field col s6">
+          <input [(ngModel)]="estudiante.matricula" name="matricula" id="matricula" type="text" class="validate">
+          <label for="matricula">Matricula</label>
+        </div>
+      </div>
       <div class="row">
           <div class="input-field col s6">
           <mat-form-field style="width: 100%">
-            <mat-label>Niveles</mat-label>
-            <mat-select name="nivelId" [(ngModel)]="documento.nivelId">
+            <mat-label>Nivel</mat-label>
+            <mat-select name="nivelId" [(ngModel)]="estudiante.nivelId">
               <mat-option *ngFor="let nivel of niveles" [value]="nivel.id">
                 {{nivel.nombre}}
               </mat-option>
@@ -26,8 +36,8 @@
           </div>
           <div class="input-field col s6">
               <mat-form-field style="width: 100%">
-                <mat-label>Instituciones</mat-label>
-                <mat-select name="institucionId"  [(ngModel)]="documento.institucionId" >
+                <mat-label>Institucion</mat-label>
+                <mat-select name="institucionId"  [(ngModel)]="estudiante.institucionId" >
                   <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
                     {{institucion.nombre}}
                   </mat-option>
@@ -47,11 +57,13 @@
     </div>
     <div class="row">
       <div class="col s12">
-          <table>
+          <table class="striped highlight">
               <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Descripción</th>
+                    <th>Apellidos</th>
+                    <th>Cédula</th>
+                    <th>Matrícula</th>
                     <th>Nivel</th>
                     <th>Institución</th>
                     <th>Opciones</th>
@@ -59,8 +71,10 @@
               </thead>
               <tbody>
                 <tr *ngFor="let estudiante of estudiantes">
-                  <td>{{ estudiante.nombre }}</td>
-                  <td>{{ estudiante.descripcion }}</td>
+                  <td>{{ estudiante.nombres }}</td>
+                  <td>{{ estudiante.apellidos }}</td>
+                  <td>{{ estudiante.cedula }}</td>
+                  <td>{{ estudiante.matricula }}</td>
                   <td>{{ estudiante.nivel.nombre }}</td>
                   <td>{{ estudiante.institucion.nombre }}</td>
                   <td><button (click)="traerEstudiante(estudiante.id)" class="btn btn-small waves-effect waves-light light-blue right"><i class="material-icons">mode_edit</i></button></td>
