@@ -1,3 +1,9 @@
 .brand-logo{
     padding-left: 10px;
 }
+.badge{
+    color: white;
+    background-color: #424242;
+    border-radius: 60px;
+    width: 1px;
+}

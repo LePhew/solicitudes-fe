@@ -20,15 +20,14 @@
                 <div class="card">
                         <h5>Documentos disponibles</h5>
                 <div class="card-content">
-                    
-                <ul class="collapsible">
+                <ul  class="collapsible">
                     <li *ngFor="let documento of documentos">   
                         <div class="collapsible-header"><i class="material-icons">file_copy</i><b>{{documento.nombre}} de la institucion {{ documento.institucion.nombre }}</b></div>
                         <div class="collapsible-body">
                             <div class="row">
                                 <ul>
                                     <li>
-                                        <b>Descripción:</b> {{documento.descripcion}} <button (click)="agregarASolicitud(documento)" class="btn-floating btn-small waves-effect waves-light blue right"><i class="material-icons">add</i></button>
+                                        <b>Descripción:</b> {{documento.descripcion}} <button (click)="agregarASolicitud(documento)" class="btn-floating btn-small blue right"><i class="material-icons">add</i></button>
                                     </li>
                                     <li>
                                        <b> Nivel:</b> {{ documento.nivel.nombre }}
@@ -37,13 +36,14 @@
                             </div>
                         </div>
                     </li>
-                </ul>             
+                </ul> 
+                <h6 *ngIf="!documentos">No hay documentos disponibles</h6>
                 </div>
               </div>
         </div>
     </div>
     <div class="row">
-        <h5>Documentos a solicitar</h5><button (click)="enviarSolicitud(estudiante.id,documentosSeleccionados)" class="btn waves-effect waves-light light-blue right">Enviar<i class="material-icons right">send</i></button>
+        <h5>Documentos a solicitar</h5><button (click)="enviarSolicitud(estudiante.id,documentosSeleccionados)" class="btn light-blue right">Enviar<i class="material-icons right">send</i></button>
     </div>
     <div class="row">
         <div class="col m12">

@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
     constructor(private http: HttpClient){
 
     }
-
+ 
     getAll(componentUrl: string, successCallback: any = ()=>{}){
         this.http.get(this.baseUrl + componentUrl).subscribe((response: any) => {
             successCallback(response);
@@ -37,6 +37,15 @@ import Swal from 'sweetalert2';
             console.log(error);
         });
     }
+    
+    getByCed(componentUrl: string, payload:any, successCallback: any = ()=>{}){
+        this.http.get(this.baseUrl + componentUrl+payload).subscribe((response: any) => {
+            successCallback(response);
+        }, (error) => {
+            console.log(error);
+        });
+    }
+
     getEstudianteDocs(componentUrl: string, payload:any, successCallback: any = ()=>{}){
         this.http.post(this.baseUrl + componentUrl, payload).subscribe((response: any) => {
             successCallback(response);
@@ -46,9 +55,9 @@ import Swal from 'sweetalert2';
     }
 
     crear(componentUrl: string, payload: any, successCallback: any = ()=>{}){
-     this.http.post(this.baseUrl + componentUrl, payload).subscribe((response: any) => {
-    successCallback(response);
-    Swal.fire("Éxito!","Creado exitosamente", "success");
+        this.http.post(this.baseUrl + componentUrl, payload).subscribe((response: any) => {
+            successCallback(response);
+            Swal.fire("Éxito!","Creado exitosamente", "success");
         }, (error) => {
             console.log(error);
         });
@@ -56,8 +65,8 @@ import Swal from 'sweetalert2';
 
     actualizar(componentUrl: string,id:string , payload: any, successCallback: any = ()=>{}){
         this.http.put(this.baseUrl + componentUrl+id, payload).subscribe((response: any) => {
-         successCallback(response);
-        Swal.fire("Éxito!","Actualizado exitosamente", "success");      
+            successCallback(response);
+            Swal.fire("Éxito!","Actualizado exitosamente", "success");
         }, (error) => {
             console.log(error);
         });
@@ -65,12 +74,21 @@ import Swal from 'sweetalert2';
 
     borrar(componentUrl: string, payload: any, successCallback:any = ()=>{}){
         this.http.delete(this.baseUrl+componentUrl+payload).subscribe((response: any) => {
-        successCallback(response);
-        Swal.fire("Éxito!","Eliminado exitosamente", "success");
+            successCallback(response);
+            Swal.fire("Éxito!","Eliminado exitosamente", "success");
         }), (error) => {
             console.log(error);
         }
     }
+
+    buscar(componentUrl: string, payload:any, successCallback: any = () => {}){
+        this.http.post(this.baseUrl+componentUrl, payload).subscribe((response: any) => {
+            successCallback(response);
+        }, (error) => {
+            console.log(error);
+        });
+    }
+
 
 
 }

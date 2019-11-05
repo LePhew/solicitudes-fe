@@ -52,7 +52,12 @@ export class SolicitudComponent implements OnInit {
       nivelId: localStorage.getItem('nivelId')
     }
     this.genericService.getEstudianteDocs(this.documentoUrl+"withparam/estudiante",data, (documentos) => {
-      this.documentos = documentos;
+      if(documentos.length < 1){
+        this.documentos = null;
+      }
+      else{
+        this.documentos = documentos;
+      }
     });
   }
 

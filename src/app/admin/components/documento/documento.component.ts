@@ -5,6 +5,7 @@ import { Nivel } from 'src/app/models/Nivel';
 import { Institucion } from 'src/app/models/Institucion';
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
+import { send } from 'q';
 @Component({
   selector: 'app-documento',
   templateUrl: './documento.component.html',
