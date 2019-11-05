@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   readonly componentUrl: string = "estudiante/";
 
   cedula: string = "";
-  contrasena: string = "";
+  password: string = "";
 
   constructor(private genericService: GenericService, private _router: Router) { }
 
@@ -23,7 +23,11 @@ export class LoginComponent implements OnInit {
 
 
   login(){
-    this.genericService.getByCed(this.componentUrl+"byced/", this.cedula, (estudiante) => {
+    var params = { 
+      cedula: this.cedula,
+      contrasena: this.password
+     }
+    this.genericService.autenticar(this.componentUrl+"autenticar", params, (estudiante) => {
       if(estudiante){
         localStorage.setItem('matricula', estudiante.matricula);
         localStorage.setItem('cedula', estudiante.cedula);

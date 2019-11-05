@@ -38,8 +38,8 @@ import Swal from 'sweetalert2';
         });
     }
     
-    getByCed(componentUrl: string, payload:any, successCallback: any = ()=>{}){
-        this.http.get(this.baseUrl + componentUrl+payload).subscribe((response: any) => {
+    autenticar(componentUrl: string, payload:any, successCallback: any = ()=>{}){
+        this.http.post(this.baseUrl + componentUrl,payload).subscribe((response: any) => {
             successCallback(response);
         }, (error) => {
             console.log(error);
