@@ -28,7 +28,7 @@ export class EstudianteComponent implements OnInit {
   constructor(
     private genericService: GenericService
   ) {
-      this.estudiante = new Estudiante("","","","",null,null,"");
+      this.estudiante = new Estudiante("","","","","",null,null,"");
    }
 
   ngOnInit() {
@@ -55,6 +55,19 @@ export class EstudianteComponent implements OnInit {
     this.genericService.getAll(this.institucionUrl, (instituciones) => {
       this.instituciones = instituciones;
     });
+  }
+
+  borrarEstudiante(id: string){
+    this.genericService.borrar(this.componentUrl, id, () => {
+      this.getEstudiantes();
+    })
+  }
+
+  crearEstudiante(){
+    this.genericService.crear(this.componentUrl, this.estudiante, () => {
+      this.estudiante = new Estudiante("","","","","",null,null,"");
+      this.getEstudiantes();
+    })
   }
   
 

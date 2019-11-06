@@ -69,18 +69,11 @@ export class DocumentoComponent implements OnInit {
   }
 
   borrarDocumento(id: string){
-    Swal.fire({
-      title: "Está seguro de que quiere borrar este registro?",
-      text: "Esta acción es irreversible",
-      showCancelButton:true,
-      confirmButtonText: "Sí",
-      cancelButtonText:"Cancelar",
-      type: "warning"
-    }).then(() => {
+
         this.genericService.borrar(this.componentUrl, id, () => {
           this.getDocumentos();
         });
-    })
+
   }
 
   traerDocumento(id: string){

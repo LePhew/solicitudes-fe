@@ -2,7 +2,11 @@
     <div class="nav-wrapper light-blue">
       <span class="center brand-logo">{{ pagename }}</span>
         <ul *ngIf="isAdminPage" style="position: relative;" id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="">Notificaciones <span class="badge">10</span></a></li>
-      </ul>
+          <li><a class="dropdown-trigger" data-target="notificaciones">Notificaciones <span class="badge">{{ notificacionesCount }} </span></a></li>
+        </ul>
     </div>
 </nav>
+
+<ul *ngFor="let notificacion of notificaciones" id='notificaciones' class='dropdown-content'>
+  <li>{{ notificacion.mensaje }}</li>
+</ul>

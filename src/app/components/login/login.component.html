@@ -5,11 +5,11 @@
             <div class="card-title center"><h5>Introduce tu cédula de identidad</h5></div>
             <div class="card-content">
                     <div class="input-field">
-                        <input [(ngModel)]="cedula" type="text" name="cedula"/>
+                        <input [(ngModel)]="cedula" mask="999-9999999-9" type="text" name="cedula"/>
                         <label for="cedula">Cédula</label>
                     </div>
                     <div class="input-field">
-                        <input [(ngModel)]="password" type="password" name="password"/>
+                        <input [(ngModel)]="password" type="password"(keyup.enter)="login()" name="password" required/>
                         <label for="password">Contraseña</label>
                     </div>
             </div>

@@ -7,6 +7,7 @@ export class Estudiante {
     public nombres: string,
     public apellidos: string,
     public cedula: string,
+    public contrasena: string,
     public matricula: string,
     public nivel: Nivel,
     public institucion: Institucion,
@@ -19,7 +20,7 @@ export interface EstudianteDTO {
     nombres: string,
     apellidos: string,
     cedula: string,
-    password: string,
+    contrasena: string,
     institucionId: string,
     nivelId: string
 }

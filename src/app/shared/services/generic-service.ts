@@ -64,21 +64,40 @@ import Swal from 'sweetalert2';
     }
 
     actualizar(componentUrl: string,id:string , payload: any, successCallback: any = ()=>{}){
+        Swal.fire({
+            title: "Está seguro de que quiere actualizar este registro?",
+            showCancelButton:true,
+            confirmButtonText: "Sí",
+            cancelButtonText:"Cancelar",
+            type: "warning"
+          }).then(() => {
         this.http.put(this.baseUrl + componentUrl+id, payload).subscribe((response: any) => {
             successCallback(response);
             Swal.fire("Éxito!","Actualizado exitosamente", "success");
-        }, (error) => {
+        }), (error) => {
             console.log(error);
+    }
+
         });
     }
 
     borrar(componentUrl: string, payload: any, successCallback:any = ()=>{}){
-        this.http.delete(this.baseUrl+componentUrl+payload).subscribe((response: any) => {
+        Swal.fire({
+            title: "Está seguro de que quiere borrar este registro?",
+            text: "Esta acción es irreversible",
+            showCancelButton:true,
+            confirmButtonText: "Sí",
+            cancelButtonText:"Cancelar",
+            type: "warning"
+          }).then(() => {
+            this.http.delete(this.baseUrl+componentUrl+payload).subscribe((response: any) => {
             successCallback(response);
             Swal.fire("Éxito!","Eliminado exitosamente", "success");
         }), (error) => {
             console.log(error);
         }
+              });
+        
     }
 
     buscar(componentUrl: string, payload:any, successCallback: any = () => {}){

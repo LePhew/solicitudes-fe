@@ -2,46 +2,54 @@
 <div class="container">
 <div class="row"><h5>Ingrese la información requerida</h5></div>
 <div class="row padded">
-    <form class="col s12">
-      <div class="row">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <input [(ngModel)]="estudiante.nombres" name="nombres" id="nombres" type="text" class="validate">
+        <label for="nombres">Nombres</label>
+      </div>
+      <div class="input-field col s6">
+        <input [(ngModel)]="estudiante.apellidos" name="apellidos" id="apellidos" type="text" class="validate">
+        <label for="apellidos">Apellidos</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input [(ngModel)]="estudiante.cedula" name="cedula" id="cedula" type="text" class="validate">
+        <label for="cedula">Cédula</label>
+      </div>
+      <div class="input-field col s6">
+        <input [(ngModel)]="estudiante.contrasena" name="contrasena" id="contrasena" type="password" class="validate">
+        <label for="contrasena">Contraseña</label>
+      </div>
+    </div>
+    <div class="row">
         <div class="input-field col s6">
-          <input [(ngModel)]="estudiante.nombres" name="nombres" id="nombres" type="text" class="validate">
-          <label for="nombres">Nombres</label>
+        <mat-form-field style="width: 100%">
+          <mat-label>Nivel</mat-label>
+          <mat-select name="nivelId" [(ngModel)]="estudiante.nivelId">
+            <mat-option *ngFor="let nivel of niveles" [value]="nivel.id">
+              {{nivel.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         </div>
         <div class="input-field col s6">
-          <input [(ngModel)]="estudiante.apellidos" name="apellidos" id="apellidos" type="text" class="validate">
-          <label for="apellidos">Apellidos</label>
-        </div>
-      </div>  
+            <mat-form-field style="width: 100%">
+              <mat-label>Institucion</mat-label>
+              <mat-select name="institucionId"  [(ngModel)]="estudiante.institucionId" >
+                <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
+                  {{institucion.nombre}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            </div>
+      </div>
       <div class="row">
-          <div class="input-field col s6">
-          <mat-form-field style="width: 100%">
-            <mat-label>Nivel</mat-label>
-            <mat-select name="nivelId" [(ngModel)]="estudiante.nivelId">
-              <mat-option *ngFor="let nivel of niveles" [value]="nivel.id">
-                {{nivel.nombre}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          </div>
-          <div class="input-field col s6">
-              <mat-form-field style="width: 100%">
-                <mat-label>Institución</mat-label>
-                <mat-select name="institucionId"  [(ngModel)]="estudiante.institucionId" >
-                  <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
-                    {{institucion.nombre}}
-                  </mat-option>
-                </mat-select>
-
-              </mat-form-field>
-              </div>
-        </div>
-        <div class="row">
-            <button (click)="crearEstudiante()" class="btn-large waves-effect waves-light light-blue right">Crear</button>
-            <button *ngIf="editMode" (click) = "actualizarEstudiante(estudiante.id, estudiante)" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
-        </div>
-    </form>
+          <button (click)="crearEstudiante()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
+      </div>
+  </form>
 </div>
 </div>
 
-    
+  

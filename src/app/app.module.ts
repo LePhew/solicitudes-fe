@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { EnumPipe } from '../app/models/Pipes';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { NivelComponent } from './admin/components/nivel/nivel.component';
 import { DocumentoComponent } from './admin/components/documento/documento.component';
@@ -46,7 +47,8 @@ import { NuevoEstudianteComponent } from './components/nuevoestudiante/nuevoestu
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [GenericService],
   bootstrap: [AppComponent]

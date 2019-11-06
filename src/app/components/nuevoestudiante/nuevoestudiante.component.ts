@@ -26,7 +26,7 @@ export class NuevoEstudianteComponent implements OnInit {
   estudiante: Estudiante;
 
   constructor(private genericService: GenericService, private _router: Router) {
-    this.estudiante = new Estudiante("","","","",null,null,"");
+    this.estudiante = new Estudiante("","","", "","",null,null,"");
   }
   
   ngOnInit() {

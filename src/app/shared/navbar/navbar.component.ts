@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { GenericService } from '../services/generic-service';
+
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-navbar',
@@ -7,16 +10,29 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   
+  readonly notificacionesUrl: string = 'notificaciones/';
+
   @Input() pagename : string;
   isAdminPage: boolean;
-
   
-  constructor() { }
+  notificacionesCount: number;
+  notificaciones: any;
+  
+  constructor(private genericService: GenericService) { }
 
   ngOnInit() {
     if(window.location.href.toLowerCase().includes("/admin")){
       this.isAdminPage = true;
     }
+    this.getNotificaciones();
+    M.AutoInit();
+  }
+
+  getNotificaciones(){
+    this.genericService.getAll(this.notificacionesUrl, (notificaciones) => {
+      this.notificacionesCount = notificaciones.length;
+      this.notificaciones = notificaciones;
+    })
   }
 
 }
