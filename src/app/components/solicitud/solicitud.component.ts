@@ -2,7 +2,10 @@ import { Component, OnInit} from '@angular/core';
 import { Estudiante } from 'src/app/models/Estudiante';
 import { GenericService } from 'src/app/shared/services/generic-service';
 import { Solicitud, SolicitudDTO } from 'src/app/models/Solicitud';
+
+import Swal from 'sweetalert2';
 declare var $:any;
+
 @Component({
   selector: 'app-solicitud',
   templateUrl: './solicitud.component.html',
@@ -52,14 +55,12 @@ export class SolicitudComponent implements OnInit {
       nivelId: localStorage.getItem('nivelId')
     }
     this.genericService.getEstudianteDocs(this.documentoUrl+"withparam/estudiante",data, (documentos) => {
-      /*if(documentos.length < 1){
+      if(documentos.length < 1){
         this.documentos = null;
       }
       else{
         this.documentos = documentos;
       }
-    });*/
-    this.documentos = documentos;
     });
   }
   
@@ -80,10 +81,17 @@ export class SolicitudComponent implements OnInit {
   }
 
   enviarSolicitud(estudianteId: string, documentosSeleccionados: any){
-    let solicitud = new SolicitudDTO(estudianteId, documentosSeleccionados);
-    this.genericService.crear(this.componentUrl, solicitud, () => {
-      this.documentosSeleccionados = [];
-    })
-  }
+      if(documentosSeleccionados.length > 0){
+        
+        let solicitud = new SolicitudDTO(estudianteId, documentosSeleccionados);
+        
+        this.genericService.crear(this.componentUrl, solicitud, () => {
+          this.documentosSeleccionados = [];
+        })
+      }
+      else{
+        Swal.fire("Error", "No se puede enviar una solicitud vacia, por favor seleccione los documentos que desea solicitar", "error");
+      }
+    }
 
 }

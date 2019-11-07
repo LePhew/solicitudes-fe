@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GenericService } from '../services/generic-service';
+import { Router } from '@angular/router';
 
+import { GenericService } from '../services/generic-service';
 import * as M from 'materialize-css';
+
 
 @Component({
   selector: 'app-navbar',
@@ -18,7 +20,7 @@ export class NavbarComponent implements OnInit {
   notificacionesCount: number;
   notificaciones: any;
   
-  constructor(private genericService: GenericService) { }
+  constructor(private genericService: GenericService, private _router: Router) { }
 
   ngOnInit() {
     if(window.location.href.toLowerCase().includes("/admin")){
@@ -35,4 +37,7 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  navigateHome(){
+    this._router.navigate(['/']);
+  }
 }

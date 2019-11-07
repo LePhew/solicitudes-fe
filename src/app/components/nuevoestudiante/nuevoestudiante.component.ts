@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { GenericService } from '../../shared/services/generic-service'; 
 import { Nivel } from 'src/app/models/Nivel';
 import { Institucion } from 'src/app/models/Institucion';
-import { EstudianteDTO, Estudiante }  from 'src/app/models/Estudiante';
+import { Estudiante }  from 'src/app/models/Estudiante';
 
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
@@ -30,10 +30,10 @@ export class NuevoEstudianteComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.askForCed();
     M.AutoInit();
     this.getNiveles();
-    this.getInstituciones();
-    this.askForCed();
+    this.getInstituciones(); 
   }
 
 
@@ -72,9 +72,20 @@ export class NuevoEstudianteComponent implements OnInit {
           this._router.navigate(['/']);
         })
       }
+      else if(response.value == null){
+        Swal.fire({
+          title:"Ha decidido no ingresar cédula",
+          text: "Será redirigido a la pantalla principal",
+          type:"error"
+        })
+        .then(() => {
+          this._router.navigate(['/']);
+        })
+      }
       else if(response.value.match('[0-9]{3}-[0-9]{7}-[0-9]')){
         this.estudiante.cedula = response.value;
       }
+      
       else{
         Swal.fire({
           title:"Cédula inválida",

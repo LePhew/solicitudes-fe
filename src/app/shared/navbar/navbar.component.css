@@ -7,3 +7,11 @@
     border-radius: 60px;
     width: 1px;
 }
+#backBtn {
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+i.material-icons {
+    line-height: 40px;
+}
