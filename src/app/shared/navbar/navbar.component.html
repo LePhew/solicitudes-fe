@@ -2,8 +2,8 @@
     <div class="nav-wrapper light-blue">
         <button (click)="navigateHome()" id="backBtn" class="btn left light-blue darken-4"><i class="material-icons">home</i></button>
       <span class="center brand-logo">{{ pagename }}</span>
-        <ul *ngIf="isAdminPage" style="position: relative;" id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a>Notificaciones <span class="badge">{{ notificacionesCount }} </span></a></li>
-        </ul>
+      <div *ngIf="isAdminPage">
+        <app-notificaciones></app-notificaciones>
+      </div>
     </div>
 </nav>

@@ -23,6 +23,7 @@ import { SolicitudAdminComponent } from './admin/components/solicitud-admin/soli
 import { LoginComponent } from './components/login/login.component';
 import { FilterComponent } from './shared/filter/filter.component';
 import { NuevoEstudianteComponent } from './components/nuevoestudiante/nuevoestudiante.component';
+import { NotificacionesComponent } from './shared/notificaciones/notificaciones.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NuevoEstudianteComponent } from './components/nuevoestudiante/nuevoestu
     EnumPipe,
     LoginComponent,
     FilterComponent,
-    NuevoEstudianteComponent
+    NuevoEstudianteComponent,
+    NotificacionesComponent
   ],
   imports: [
     BrowserModule,

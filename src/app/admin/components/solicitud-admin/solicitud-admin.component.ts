@@ -18,7 +18,7 @@ export class SolicitudAdminComponent implements OnInit {
   solicitud: any;
   documentosSolicitados: any;
   solicitudAEditar: any;
-  newEstado: any;q
+  newEstado: any;
 
   estado = Estados;
   editMode = false;
@@ -40,9 +40,7 @@ export class SolicitudAdminComponent implements OnInit {
 
   //Método para búsqueda
   filtrar(criteria: any){
-    console.log(criteria);
     this.genericService.buscar(this.searchUrl, {criteria}, (res) => {
-      console.log(res);
       this.solicitudes = res;
     })
   }

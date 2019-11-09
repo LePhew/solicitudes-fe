@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
     constructor(private http: HttpClient){
 
     }
- 
+
     getAll(componentUrl: string, successCallback: any = ()=>{}){
         this.http.get(this.baseUrl + componentUrl).subscribe((response: any) => {
             successCallback(response);
@@ -101,6 +101,14 @@ import Swal from 'sweetalert2';
     }
 
     buscar(componentUrl: string, payload:any, successCallback: any = () => {}){
+        this.http.post(this.baseUrl+componentUrl, payload).subscribe((response: any) => {
+            successCallback(response);
+        }, (error) => {
+            console.log(error);
+        });
+    }
+    
+    notificacionVista(componentUrl: string, successCallback: any = () => {}, payload?:any){
         this.http.post(this.baseUrl+componentUrl, payload).subscribe((response: any) => {
             successCallback(response);
         }, (error) => {
