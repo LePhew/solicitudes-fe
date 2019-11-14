@@ -19,7 +19,7 @@ export class InstitucionComponent implements OnInit {
   editMode: boolean = false;
   
   constructor(private genericService: GenericService) {
-    this.institucion = new InstitucionDTO("","","");
+    this.institucion = new InstitucionDTO("","");
    }
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class InstitucionComponent implements OnInit {
   }
   crearInstitucion(){
     this.genericService.crear(this.componentUrl, this.institucion, () => {
-      this.institucion = new InstitucionDTO("","","");
+      this.institucion = new InstitucionDTO("","");
       this.getInstituciones();
     });
     
@@ -54,7 +54,7 @@ export class InstitucionComponent implements OnInit {
 
   actualizarInstitucion(id: string, institucion: Partial<InstitucionDTO>){
     this.genericService.actualizar(this.componentUrl, id, institucion, () => {
-      this.institucion = new InstitucionDTO("","","");
+      this.institucion = new InstitucionDTO("","");
       this.editMode = false;
       this.getInstituciones();
     })

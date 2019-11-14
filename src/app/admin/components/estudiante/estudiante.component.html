@@ -27,7 +27,7 @@
           <div class="input-field col s6">
           <mat-form-field style="width: 100%">
             <mat-label>Nivel</mat-label>
-            <mat-select name="nivelId" [(ngModel)]="estudiante.institucion.id">
+            <mat-select name="nivelId" [(ngModel)]="estudiante.institucionId">
               <mat-option *ngFor="let nivel of niveles" [value]="nivel.id">
                 {{nivel.nombre}}
               </mat-option>
@@ -37,7 +37,7 @@
           <div class="input-field col s6">
               <mat-form-field style="width: 100%">
                 <mat-label>Institucion</mat-label>
-                <mat-select name="institucionId"  [(ngModel)]="estudiante.institucion.id" >
+                <mat-select name="institucionId"  [(ngModel)]="estudiante.institucionId" >
                   <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
                     {{institucion.nombre}}
                   </mat-option>

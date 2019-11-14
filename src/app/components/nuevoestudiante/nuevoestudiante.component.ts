@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { GenericService } from '../../shared/services/generic-service'; 
 import { Nivel } from '../../models/Nivel';
 import { Institucion } from '../../models/Institucion';
-import { Estudiante }  from '../../models/Estudiante';
+import { EstudianteDTO, Estudiante }  from '../../models/Estudiante';
 
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
@@ -23,10 +23,10 @@ export class NuevoEstudianteComponent implements OnInit {
 
   niveles: Nivel[];
   instituciones: Institucion[];
-  estudiante: Estudiante;
+  estudiante: EstudianteDTO;
 
   constructor(private genericService: GenericService, private _router: Router) {
-    this.estudiante = new Estudiante('',"","","","","",null,null,"");
+    this.estudiante = new EstudianteDTO();
   }
   
   ngOnInit() {

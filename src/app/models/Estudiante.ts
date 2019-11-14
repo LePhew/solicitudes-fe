@@ -16,13 +16,17 @@ export class Estudiante {
     ){}
 }
 
-export interface EstudianteDTO {
+export class EstudianteDTO {
 
-    id: string,
-    nombres: string,
-    apellidos: string,
-    cedula: string,
-    contrasena: string,
-    institucionId: string,
-    nivelId: string
+    public nombres: string = "";
+    public apellidos: string = "";
+    public cedula: string = "";
+    public contrasena: string = "";
+    public nivelId: string = "";
+    public institucionId:string = "";
+    public estado: string = "";
+    
+    constructor(){}
+
+
 }

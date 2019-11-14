@@ -6,7 +6,7 @@ import { Institucion } from '../../../models/Institucion';
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
 import { GenericService } from '../../../shared/services/generic-service';
-import { Estudiante } from '../../../models/Estudiante';
+import { Estudiante, EstudianteDTO } from '../../../models/Estudiante';
 
 @Component({
   selector: 'app-estudiante',
@@ -23,15 +23,15 @@ export class EstudianteComponent implements OnInit {
   niveles: Nivel[];
   instituciones: Institucion[];
   estudiantes: Estudiante[];
-  estudiante: Estudiante;
+  estudiante: EstudianteDTO;
 
   editMode:boolean = false;
   
   constructor(
     private genericService: GenericService
   ) {
-      this.estudiante = new Estudiante("","","","","","",null,null,"");
-   }
+      this.estudiante = new EstudianteDTO();
+    }
 
   ngOnInit() {
     M.AutoInit();
@@ -67,7 +67,7 @@ export class EstudianteComponent implements OnInit {
 
   crearEstudiante(){
     this.genericService.crear(this.componentUrl, this.estudiante, () => {
-      this.estudiante = new Estudiante("","","","","","",null,null,"");
+      this.estudiante = new EstudianteDTO();
       this.getEstudiantes();
     })
   }
