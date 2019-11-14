@@ -4,7 +4,6 @@ import { Institucion } from './Institucion';
 export class DocumentoDTO{
 
     constructor(
-    public id: string,
     public nombre: string,
     public descripcion: string,
     public nivelId: string,
