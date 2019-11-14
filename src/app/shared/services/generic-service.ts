@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
   export class GenericService {
 
-    baseUrl: string = "http://localhost:3000/"
+    baseUrl: string = "http://solicitudes-api.eastus2.cloudapp.azure.com:3000/"
 
     constructor(private http: HttpClient){
 

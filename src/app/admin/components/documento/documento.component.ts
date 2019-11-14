@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GenericService } from 'src/app/shared/services/generic-service';
-import { Documento, DocumentoDTO } from 'src/app/models/Documento';
-import { Nivel } from 'src/app/models/Nivel';
-import { Institucion } from 'src/app/models/Institucion';
+import { GenericService } from '../../../shared/services/generic-service';
+import { Documento, DocumentoDTO } from '../../../models/Documento';
+import { Nivel } from '../../../models/Nivel';
+import { Institucion } from '../../../models/Institucion';
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
 
@@ -27,7 +27,7 @@ export class DocumentoComponent implements OnInit {
   editMode: boolean = false;
 
   constructor(private genericService: GenericService) {
-    this.documento = new DocumentoDTO("","","","");
+    this.documento = new DocumentoDTO("","","","","");
    }
 
 
@@ -62,7 +62,7 @@ export class DocumentoComponent implements OnInit {
 
   crearDocumento(){
     this.genericService.crear(this.componentUrl, this.documento, () => {
-      this.documento = new DocumentoDTO("","","","");
+      this.documento = new DocumentoDTO("","","","","");
       this.getDocumentos();
     });
     
@@ -87,7 +87,7 @@ export class DocumentoComponent implements OnInit {
 
   actualizarDocumento(id: string, documento: Partial<DocumentoDTO>){
     this.genericService.actualizar(this.componentUrl, id, documento, () => {
-      this.documento = new DocumentoDTO("","","","");
+      this.documento = new DocumentoDTO("","","","","");
       this.editMode = false;
       this.getDocumentos();
     })

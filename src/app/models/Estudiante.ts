@@ -4,6 +4,7 @@ import { Institucion } from './Institucion';
 export class Estudiante {
     
     constructor(
+    public id: string,
     public nombres: string,
     public apellidos: string,
     public cedula: string,
@@ -17,6 +18,7 @@ export class Estudiante {
 
 export interface EstudianteDTO {
 
+    id: string,
     nombres: string,
     apellidos: string,
     cedula: string,

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Nivel } from 'src/app/models/Nivel';
-import { Institucion } from 'src/app/models/Institucion';
+import { Nivel } from '../../../models/Nivel';
+import { Institucion } from '../../../models/Institucion';
 
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
-import { GenericService } from 'src/app/shared/services/generic-service';
-import { Estudiante } from 'src/app/models/Estudiante';
+import { GenericService } from '../../../shared/services/generic-service';
+import { Estudiante } from '../../../models/Estudiante';
 
 @Component({
   selector: 'app-estudiante',
@@ -24,11 +24,13 @@ export class EstudianteComponent implements OnInit {
   instituciones: Institucion[];
   estudiantes: Estudiante[];
   estudiante: Estudiante;
+
+  editMode:boolean = false;
   
   constructor(
     private genericService: GenericService
   ) {
-      this.estudiante = new Estudiante("","","","","",null,null,"");
+      this.estudiante = new Estudiante("","","","","","",null,null,"");
    }
 
   ngOnInit() {
@@ -65,9 +67,12 @@ export class EstudianteComponent implements OnInit {
 
   crearEstudiante(){
     this.genericService.crear(this.componentUrl, this.estudiante, () => {
-      this.estudiante = new Estudiante("","","","","",null,null,"");
+      this.estudiante = new Estudiante("","","","","","",null,null,"");
       this.getEstudiantes();
     })
+  }
+  actualizarEstudiante(){
+    
   }
   
 

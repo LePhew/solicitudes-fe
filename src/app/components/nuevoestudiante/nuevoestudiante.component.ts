@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { GenericService } from '../../shared/services/generic-service'; 
-import { Nivel } from 'src/app/models/Nivel';
-import { Institucion } from 'src/app/models/Institucion';
-import { Estudiante }  from 'src/app/models/Estudiante';
+import { Nivel } from '../../models/Nivel';
+import { Institucion } from '../../models/Institucion';
+import { Estudiante }  from '../../models/Estudiante';
 
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class NuevoEstudianteComponent implements OnInit {
 
-  private readonly pagename = "Creación de nuevo Estudiante";
+  readonly pagename = "Creación de nuevo Estudiante";
   readonly nivelUrl: string = "nivel/";
   readonly institucionUrl: string = "institucion/";
   readonly estudianteUrl: string = "estudiante/";
@@ -26,7 +26,7 @@ export class NuevoEstudianteComponent implements OnInit {
   estudiante: Estudiante;
 
   constructor(private genericService: GenericService, private _router: Router) {
-    this.estudiante = new Estudiante("","","", "","",null,null,"");
+    this.estudiante = new Estudiante("","","","","","",null,null,"");
   }
   
   ngOnInit() {

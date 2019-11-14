@@ -1,6 +1,7 @@
 export class NivelDTO {
 
     constructor(
+    public id: string,
     public nombre: string,
     public descripcion: string,
     public orden: number

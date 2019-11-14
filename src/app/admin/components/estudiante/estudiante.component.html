@@ -27,7 +27,7 @@
           <div class="input-field col s6">
           <mat-form-field style="width: 100%">
             <mat-label>Nivel</mat-label>
-            <mat-select name="nivelId" [(ngModel)]="estudiante.nivelId">
+            <mat-select name="nivelId" [(ngModel)]="estudiante.institucion.id">
               <mat-option *ngFor="let nivel of niveles" [value]="nivel.id">
                 {{nivel.nombre}}
               </mat-option>
@@ -37,7 +37,7 @@
           <div class="input-field col s6">
               <mat-form-field style="width: 100%">
                 <mat-label>Institucion</mat-label>
-                <mat-select name="institucionId"  [(ngModel)]="estudiante.institucionId" >
+                <mat-select name="institucionId"  [(ngModel)]="estudiante.institucion.id" >
                   <mat-option *ngFor="let institucion of instituciones" [value]="institucion.id">
                     {{institucion.nombre}}
                   </mat-option>
@@ -47,7 +47,7 @@
         </div>
         <div class="row">
             <button (click)="crearEstudiante()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
-            <button *ngIf="editMode" (click) = "actualizarEstudiante(estudiante.id, estudiante)" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
+            <button *ngIf="editMode" (click) = "actualizarEstudiante()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
         </div>
     </form>
     <div class="row">
@@ -77,7 +77,6 @@
                   <td>{{ estudiante.matricula }}</td>
                   <td>{{ estudiante.nivel.nombre }}</td>
                   <td>{{ estudiante.institucion.nombre }}</td>
-                  <td><button (click)="traerEstudiante(estudiante.id)" class="btn btn-small light-blue right"><i class="material-icons">mode_edit</i></button></td>
                   <td><button (click)="borrarEstudiante(estudiante.id)" class="btn btn-small light-blue right"><i class="material-icons">delete</i></button></td>
                 </tr>
               </tbody>

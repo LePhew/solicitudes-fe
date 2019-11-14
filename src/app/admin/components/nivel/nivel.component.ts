@@ -22,7 +22,7 @@ export class NivelComponent implements OnInit {
   @ViewChild('formNivel',{static: false}) formNivel;
   
   constructor(private genericService: GenericService) {
-    this.nivel = new NivelDTO("","",null);
+    this.nivel = new NivelDTO("","","",null);
    }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class NivelComponent implements OnInit {
   }
   crearNivel(){
     this.genericService.crear(this.componentUrl, this.nivel, () => {
-      this.nivel = new NivelDTO("","",null);
+      this.nivel = new NivelDTO("","","",null);
       this.getNiveles();
       this.formNivel.resetForm();
     });
@@ -71,7 +71,7 @@ export class NivelComponent implements OnInit {
 
   actualizarNivel(id: string, nivel: Partial<NivelDTO>){
     this.genericService.actualizar(this.componentUrl, id, nivel, () => {
-      this.nivel = new NivelDTO("","",null);
+      this.nivel = new NivelDTO("","","",null);
       this.editMode = false;
       this.getNiveles();
     })
