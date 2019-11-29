@@ -1,6 +1,7 @@
 export class InstitucionDTO {
 
     constructor(
+    public id: string,
     public nombre: string,
     public descripcion: string
     ){}

@@ -27,7 +27,7 @@ export class DocumentoComponent implements OnInit {
   editMode: boolean = false;
 
   constructor(private genericService: GenericService) {
-    this.documento = new DocumentoDTO("","","","");
+    this.documento = new DocumentoDTO("","","","","");
    }
 
 
@@ -62,7 +62,7 @@ export class DocumentoComponent implements OnInit {
 
   crearDocumento(){
     this.genericService.crear(this.componentUrl, this.documento, () => {
-      this.documento = new DocumentoDTO("","","","");
+      this.documento = new DocumentoDTO("","","","","");
       this.getDocumentos();
     });
     
@@ -86,8 +86,14 @@ export class DocumentoComponent implements OnInit {
   }
 
   actualizarDocumento(id: string, documento: Partial<DocumentoDTO>){
-    this.genericService.actualizar(this.componentUrl, id, documento, () => {
-      this.documento = new DocumentoDTO("","","","");
+    const docToSend = {
+      "nombre": documento.nombre,
+      "descripcion": documento.descripcion,
+      "nivelId": documento.nivelId,
+      "institucionId": documento.institucionId
+    }
+    this.genericService.actualizar(this.componentUrl, id, docToSend, () => {
+      this.documento = new DocumentoDTO("","","","","");
       this.editMode = false;
       this.getDocumentos();
     })
