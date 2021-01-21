@@ -1,17 +1,21 @@
-.brand-logo{
-    padding-left: 10px;
+.brand-logo {
+  padding-left: 10px;
 }
-.badge{
-    color: white;
-    background-color: #424242;
-    border-radius: 60px;
-    width: 1px;
+.badge {
+  color: white;
+  background-color: #424242;
+  border-radius: 60px;
+  width: 1px;
+}
+#homeBtn {
+  margin-top: 15px;
+  margin-left: 5px;
 }
 #backBtn {
-    margin-top: 15px;
-    margin-left: 5px;
+  margin-top: 15px;
+  margin-left: 5px;
 }
 
 i.material-icons {
-    line-height: 40px;
+  line-height: 40px;
 }

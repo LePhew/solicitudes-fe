@@ -46,10 +46,14 @@
               </div>
         </div>
         <div class="row">
-            <button (click)="crearEstudiante()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
-            <button *ngIf="editMode" (click) = "actualizarEstudiante()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button>
+            <button (click)="crearEstudiante()" class="btn-floating btn-large light-blue right"><i class="material-icons">add</i></button>
+            <button (click)="doSomething()" class="btn-floating btn-large light-blue right"><i class="material-icons">search</i></button>
+            <!-- <button *ngIf="editMode" (click) = "actualizarEstudiante()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">done</i></button> -->
         </div>
     </form>
+    <div class="row">
+      <app-filter></app-filter>
+    </div>
     <div class="row">
       <h5>
         Selecciona un registro para editarlo.

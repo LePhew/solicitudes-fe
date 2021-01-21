@@ -1,12 +1,9 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: "withStatus"})
-export class EnumPipe implements PipeTransform{
-   
-    transform(){
+@Pipe({ name: "withStatus" })
+export class EnumPipe implements PipeTransform {
 
-        
+    transform() {
 
     }
-
 }

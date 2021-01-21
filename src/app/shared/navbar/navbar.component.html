@@ -1,6 +1,7 @@
 <nav>
     <div class="nav-wrapper light-blue">
-        <button (click)="navigateHome()" id="backBtn" class="btn left light-blue darken-4"><i class="material-icons">home</i></button>
+      <button (click)="navigateHome()" id="homeBtn" class="btn left light-blue darken-4"><i class="material-icons">home</i></button>
+      <button (click)="goBack()" id="backBtn" class="btn left light-blue darken-4"><i class="material-icons">subdirectory_arrow_left</i></button>
       <span class="center brand-logo">{{ pagename }}</span>
       <div *ngIf="isAdminPage">
         <app-notificaciones></app-notificaciones>

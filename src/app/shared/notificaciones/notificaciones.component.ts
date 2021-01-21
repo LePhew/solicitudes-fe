@@ -15,7 +15,7 @@ export class NotificacionesComponent implements OnInit {
 
   notificaciones: Array<any>;
   notificacionesCount: number;
-  
+
   constructor(private genericService: GenericService, private _router: Router) { }
 
   ngOnInit() {
@@ -23,8 +23,9 @@ export class NotificacionesComponent implements OnInit {
     M.AutoInit();
   }
 
-  fillDropDown(){
-    this.notificaciones.forEach((item: any, index: number) => {
+  fillDropDown() {
+    if (this.notificacionesCount > 0) {
+      this.notificaciones.forEach((item: any, index: number) => {
         let dropdown = document.getElementById('dropdown2');
         let li = document.createElement('li');
         li.classList.add('collection-item');
@@ -35,22 +36,28 @@ export class NotificacionesComponent implements OnInit {
         })
         li.appendChild(document.createTextNode(item.mensaje));
         dropdown.appendChild(li);
-    })
+      })
+    }
+    else {
+      let dropdown = document.getElementById('dropdown2');
+      let li = document.createElement('li');
+      li.classList.add('collection-item');
+      li.appendChild(document.createTextNode("No hay solicitudes no vistas"));
+      dropdown.appendChild(li);
+    }
   }
 
-  getNotificaciones(){
+  getNotificaciones() {
     this.genericService.getAll(this.componentUrl, (notificaciones: any) => {
       this.notificacionesCount = notificaciones.length;
       this.notificaciones = notificaciones;
-      if(notificaciones.length > 0){
-        this.fillDropDown();
-      }
+      this.fillDropDown();
     })
-    
+
   }
 
-  marcarVistas(){
-    this.genericService.notificacionVista(this.componentUrl+"vistas", () => {
+  marcarVistas() {
+    this.genericService.notificacionVista(this.componentUrl + "vistas", () => {
       this.getNotificaciones();
     })
   }
