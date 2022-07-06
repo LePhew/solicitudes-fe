@@ -13,48 +13,48 @@ export class NivelComponent implements OnInit {
 
   readonly pagename: string = "Gestión de Niveles";
   readonly componentUrl: string = "nivel/";
-  
+
   niveles: any[];
   nivel: NivelDTO;
   editMode: boolean = false;
   receivedValue: string;
 
-  @ViewChild('formNivel',{static: false}) formNivel;
-  
+  @ViewChild('formNivel', { static: false }) formNivel;
+
   constructor(private genericService: GenericService) {
-    this.nivel = new NivelDTO("","","",null);
-   }
+    this.nivel = new NivelDTO("", "", "", null);
+  }
 
   ngOnInit() {
     this.getNiveles();
   }
 
-  getNiveles(){
+  getNiveles() {
     this.genericService.getAll(this.componentUrl, (niveles) => {
       this.niveles = niveles;
     });
   }
-  crearNivel(){
+  crearNivel() {
     this.genericService.crear(this.componentUrl, this.nivel, () => {
-      this.nivel = new NivelDTO("","","",null);
+      this.nivel = new NivelDTO("", "", "", null);
       this.getNiveles();
       this.formNivel.resetForm();
     });
-    
+
   }
 
-  filtrar(criteria: string){
+  filtrar(criteria: string) {
     this.receivedValue = criteria;
   }
 
-  borrarNivel(id: string){
+  borrarNivel(id: string) {
     Swal.fire({
+      icon: "warning",
       title: "Está seguro de que quiere borrar este registro?",
       text: "Esta acción es irreversible",
-      showCancelButton:true,
+      showCancelButton: true,
       confirmButtonText: "Sí",
-      cancelButtonText:"Cancelar",
-      type: "warning"
+      cancelButtonText: "Cancelar",
     }).then(() => {
       this.genericService.borrar(this.componentUrl, id, () => {
         this.getNiveles();
@@ -62,16 +62,16 @@ export class NivelComponent implements OnInit {
     })
   }
 
-  traerNivel(id: string){
+  traerNivel(id: string) {
     this.genericService.getById(this.componentUrl, id, (nivel) => {
       this.nivel = nivel;
       this.editMode = true;
     });
   }
 
-  actualizarNivel(id: string, nivel: Partial<NivelDTO>){
+  actualizarNivel(id: string, nivel: Partial<NivelDTO>) {
     this.genericService.actualizar(this.componentUrl, id, nivel, () => {
-      this.nivel = new NivelDTO("","","",null);
+      this.nivel = new NivelDTO("", "", "", null);
       this.editMode = false;
       this.getNiveles();
     })

@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <button (click)="crearDocumento()" class="btn-floating btn-large waves-effect waves-light light-blue right"><i class="material-icons">add</i></button>
-            <button *ngIf="editMode" (click)="actualizarDocumento(documento.id, documento)" class="btn-floating btn-large light-blue right">
+            <button *ngIf="editMode" (click)="actualizarDocumento(documento)" class="btn-floating btn-large light-blue right">
               <i class="material-icons">done</i></button>
         </div>
     </form>

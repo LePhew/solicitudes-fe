@@ -44,10 +44,22 @@ export class NavbarComponent implements OnInit {
 
   navigateHome() {
     //something goes here that will prompt if you want to log off the app when hitting the home button.
-    Swal.fire("");
-    this._router.navigate(['/']);
+    Swal.fire({
+      title: 'Te vas?',
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Cerrar sesión',
+      cancelButtonText: `Cancelar`
+    }).then((result) => {
+      if (result.value) {
+        localStorage.clear();
+        this._router.navigate(['/']);
+      }
+      else {
+        this._router.navigate(['/solicitudes']);
+      }
+    })
   }
-
   goBack() {
     this._location.back();
   }

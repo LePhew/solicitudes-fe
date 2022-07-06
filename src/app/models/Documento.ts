@@ -1,19 +1,18 @@
 import { Nivel } from './Nivel';
 import { Institucion } from './Institucion';
 
-export class DocumentoDTO{
+export class DocumentoDTO {
 
     constructor(
-    public id: string,
-    public nombre: string,
-    public descripcion: string,
-    public nivelId: string,
-    public institucionId: string
-    ){}
-    
+        public nombre: string,
+        public descripcion: string,
+        public nivelId: string,
+        public institucionId: string
+    ) { }
+
 }
 
-export class Documento{
+export class Documento {
 
     constructor(
         public id: string,
@@ -22,6 +21,6 @@ export class Documento{
         public nivel: Nivel,
         public institucion: Institucion,
         public creado: Date
-    ){}
+    ) { }
 
 }

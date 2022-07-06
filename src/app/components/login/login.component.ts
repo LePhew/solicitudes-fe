@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent implements OnInit {
 
-  readonly pagename:string = "Sistema de Solicitudes";
+  readonly pagename: string = "Sistema de Solicitudes";
   readonly componentUrl: string = "estudiante/";
 
   cedula: string = "";
@@ -21,39 +21,39 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
+  login() {
     //Luego de la mascara, el string llegaba sin los dashes (-), aqui se los agregamos.
-    this.cedula = `${this.cedula.substr(0,3)}-${this.cedula.substr(3,7)}-${this.cedula.substr(10,1)}`
-    if(this.password == ""){
-      Swal.fire("Contraseña incorrecta", "Debe introducir una contraseña válida", "warning" );
+    this.cedula = `${this.cedula.substr(0, 3)}-${this.cedula.substr(3, 7)}-${this.cedula.substr(10, 1)}`
+    if (this.password == "") {
+      Swal.fire("Contraseña incorrecta", "Debe introducir una contraseña válida", "warning");
     }
-    else{
-      var params = { 
+    else {
+      let params = {
         cedula: this.cedula,
         contrasena: this.password
-       }
-      this.genericService.autenticar(this.componentUrl+"autenticar", params, (estudiante) => {
-        if(estudiante){
+      }
+      this.genericService.autenticar(this.componentUrl + "autenticar", params, (estudiante) => {
+        if (estudiante) {
           localStorage.setItem('matricula', estudiante.matricula);
           localStorage.setItem('cedula', estudiante.cedula);
           localStorage.setItem('nivelId', estudiante.nivel.id);
           localStorage.setItem('institucionId', estudiante.institucion.id);
           this._router.navigate(['/solicitudes']);
         }
-        else{
+        else {
           Swal.fire({
             title: "Usuario no encontrado",
             text: "Desea crear un nuevo usuario",
-            type: "info",
+            icon: "info",
             showCancelButton: true,
             cancelButtonText: "No",
             confirmButtonText: "Sí"
           }).then(response => {
-            if(response.value){
+            if (response.value) {
               this._router.navigate(['/nuevo']);
             }
           })
-        }    
+        }
       })
     }
   }

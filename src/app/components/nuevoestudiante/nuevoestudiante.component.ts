@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { GenericService } from '../../shared/services/generic-service'; 
+import { GenericService } from '../../shared/services/generic-service';
 import { Nivel } from '../../models/Nivel';
 import { Institucion } from '../../models/Institucion';
-import { EstudianteDTO, Estudiante }  from '../../models/Estudiante';
+import { EstudianteDTO, Estudiante } from '../../models/Estudiante';
 
 import * as M from 'materialize-css';
 import Swal from 'sweetalert2';
@@ -28,74 +28,74 @@ export class NuevoEstudianteComponent implements OnInit {
   constructor(private genericService: GenericService, private _router: Router) {
     this.estudiante = new EstudianteDTO();
   }
-  
+
   ngOnInit() {
     this.askForCed();
     this.getNiveles();
-    this.getInstituciones(); 
+    this.getInstituciones();
     M.AutoInit();
   }
 
 
-  getNiveles(){
+  getNiveles() {
     this.genericService.getAll(this.nivelUrl, (niveles) => {
       this.niveles = niveles;
     });
   }
 
-  getInstituciones(){
+  getInstituciones() {
     this.genericService.getAll(this.institucionUrl, (instituciones) => {
       this.instituciones = instituciones;
     });
   }
 
-  crearEstudiante(){
+  crearEstudiante() {
     this.genericService.crear(this.estudianteUrl, this.estudiante, () => {
       this._router.navigate(['/']);
     })
   }
 
-  askForCed(){
+  askForCed() {
     Swal.fire({
-      title:"Ingresa tu cédula para continuar",
+      title: "Ingresa tu cédula para continuar",
       input: "text",
       confirmButtonText: "Ok"
     })
-    .then(response => {
-      if(response.dismiss == Swal.DismissReason.esc){
-        Swal.fire({
-          title:"Ha decidido no ingresar cédula",
-          text: "Será redirigido a la pantalla principal",
-          type:"error"
-        })
-        .then(() => {
-          this._router.navigate(['/']);
-        })
-      }
-      else if(response.value == null){
-        Swal.fire({
-          title:"Ha decidido no ingresar cédula",
-          text: "Será redirigido a la pantalla principal",
-          type:"error"
-        })
-        .then(() => {
-          this._router.navigate(['/']);
-        })
-      }
-      else if(response.value.match('[0-9]{3}-[0-9]{7}-[0-9]')){
-        this.estudiante.cedula = response.value;
-      }
-      
-      else{
-        Swal.fire({
-          title:"Cédula inválida",
-          text: "Favor verificar e intentar nuevamente",
-          type:"error"
-        }).then(() => {
-          this.askForCed();
-        })
-      }
-    })
+      .then(response => {
+        if (response.dismiss == Swal.DismissReason.esc) {
+          Swal.fire({
+            title: "Ha decidido no ingresar cédula",
+            text: "Será redirigido a la pantalla principal",
+            icon: "error"
+          })
+            .then(() => {
+              this._router.navigate(['/']);
+            })
+        }
+        else if (response.value == null) {
+          Swal.fire({
+            title: "Ha decidido no ingresar cédula",
+            text: "Será redirigido a la pantalla principal",
+            icon: "error"
+          })
+            .then(() => {
+              this._router.navigate(['/']);
+            })
+        }
+        else if (response.value.match('[0-9]{3}-[0-9]{7}-[0-9]')) {
+          this.estudiante.cedula = response.value;
+        }
+
+        else {
+          Swal.fire({
+            title: "Cédula inválida",
+            text: "Favor verificar e intentar nuevamente",
+            icon: "error"
+          }).then(() => {
+            this.askForCed();
+          })
+        }
+      })
   }
 
 }
