@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { EnumPipe } from '../app/models/Pipes';
 import { NgxMaskModule } from 'ngx-mask';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { NivelComponent } from './admin/components/nivel/nivel.component';
 import { DocumentoComponent } from './admin/components/documento/documento.component';
@@ -24,6 +25,8 @@ import { LoginComponent } from './components/login/login.component';
 import { FilterComponent } from './shared/filter/filter.component';
 import { NuevoEstudianteComponent } from './components/nuevoestudiante/nuevoestudiante.component';
 import { NotificacionesComponent } from './shared/notificaciones/notificaciones.component';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
@@ -47,6 +50,7 @@ import { NotificacionesComponent } from './shared/notificaciones/notificaciones.
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    SocketIoModule.forRoot(config),
     HttpClientModule,
     BrowserAnimationsModule,
     MatSelectModule,

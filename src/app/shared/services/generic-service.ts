@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Socket } from 'ngx-socket-io';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -10,7 +11,11 @@ export class GenericService {
 
     baseUrl: string = "http://localhost:3000/"
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        private socket: Socket
+    ) {
+
 
     }
 
@@ -116,8 +121,8 @@ export class GenericService {
         });
     }
 
-    notificarCreacionDocumento(componentUrl: string, successCallback: any = () => { }, payload?: any) {
-
+    notificarCreacionDocumento(successCallback: any = () => { }, payload: any) {
+        this.socket.emit('solicitud-creada', payload);
     }
 
 

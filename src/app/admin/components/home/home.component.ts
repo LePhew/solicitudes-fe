@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkIfAdmin(){
-    Swal.fire({
+    Swal.fire({ 
       title:"Ingresa el código de admin para continuar",
       input: "text",
       confirmButtonText: "Ok"
