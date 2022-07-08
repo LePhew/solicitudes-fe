@@ -26,7 +26,7 @@ import { FilterComponent } from './shared/filter/filter.component';
 import { NuevoEstudianteComponent } from './components/nuevoestudiante/nuevoestudiante.component';
 import { NotificacionesComponent } from './shared/notificaciones/notificaciones.component';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:3000' };
 
 @NgModule({
   declarations: [

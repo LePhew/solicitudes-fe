@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private genericService: GenericService,
     private _router: Router,
-    private _location: Location
+    private _location: Location,
   ) { }
 
   ngOnInit() {
@@ -63,4 +63,6 @@ export class NavbarComponent implements OnInit {
   goBack() {
     this._location.back();
   }
+
+
 }

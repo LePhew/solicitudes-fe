@@ -121,9 +121,4 @@ export class GenericService {
         });
     }
 
-    notificarCreacionDocumento(successCallback: any = () => { }, payload: any) {
-        this.socket.emit('solicitud-creada', payload);
-    }
-
-
 }

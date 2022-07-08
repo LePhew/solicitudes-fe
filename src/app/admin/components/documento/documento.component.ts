@@ -61,12 +61,10 @@ export class DocumentoComponent implements OnInit {
   }
 
   crearDocumento() {
-    console.log(this.documento);
     this.genericService.crear(this.componentUrl, this.documento, () => {
       this.documento = new DocumentoDTO("", "", "", "");
       this.getDocumentos();
     });
-
   }
 
   borrarDocumento(id: string) {

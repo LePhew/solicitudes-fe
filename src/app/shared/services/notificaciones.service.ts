@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,14 @@ export class NotificacionesService {
     this.socket.emit(evento, data);
   }
 
-  subscribir(evento: string, successCallback: any = () => { }) {
-    this.socket.on(evento, successCallback);
+  userConnected() {
+    return this.socket.fromEvent('User connected').pipe(map((data: any) => {
+      return data;
+    }));
   }
+
+  solicitudCreada() {
+    return this.socket.fromEvent('nueva-solicitud').pipe(map((data) => { return data }));
+  }
+
 }

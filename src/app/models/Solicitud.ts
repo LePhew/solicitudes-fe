@@ -4,16 +4,17 @@ import { Estados } from './Enum';
 export class SolicitudDTO {
 
     constructor(
-        public estudianteId: string, 
+        public estudianteId: string,
         public documentos: Documento[]
-        ){}
+    ) { }
 
 }
 
 export class Solicitud {
 
-        constructor(
-            public id?: string,
-            public estado?: Estados
-        ){}
+    constructor(
+        public id?: string,
+        public solicitudCode?: string,
+        public estado?: Estados
+    ) { }
 }

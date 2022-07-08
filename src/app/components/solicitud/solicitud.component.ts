@@ -5,6 +5,7 @@ import { Solicitud, SolicitudDTO } from 'src/app/models/Solicitud';
 
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { NotificacionesService } from 'src/app/shared/services/notificaciones.service';
 declare var $: any;
 
 @Component({
@@ -28,7 +29,8 @@ export class SolicitudComponent implements OnInit {
 
   constructor(
     private genericService: GenericService,
-    private _router: Router
+    private _router: Router,
+    private notificacionService: NotificacionesService
   ) {
 
   }
@@ -38,7 +40,7 @@ export class SolicitudComponent implements OnInit {
     this.getEstudiante();
     this.getDocumentos();
     this.jquery_code();
-
+    this.notificacionService.userConnected().subscribe((data) => { console.log(data) })
   }
 
   validarLogin() {
@@ -101,13 +103,14 @@ export class SolicitudComponent implements OnInit {
 
       let solicitud = new SolicitudDTO(estudianteId, documentosSeleccionados);
 
-      this.genericService.crear(this.componentUrl, solicitud, () => {
+      this.genericService.crear(this.componentUrl, solicitud, (solicitud: Solicitud) => {
         this.documentosSeleccionados = [];
+        this.notificacionService.notificar('solicitud-creada', { code: solicitud.solicitudCode, id: solicitud.id });
       })
     }
     else {
       Swal.fire("Error", "No se puede enviar una solicitud vacia, por favor seleccione los documentos que desea solicitar", "error");
     }
-  }
 
+  }
 }
