@@ -62,7 +62,14 @@ export class GenericService {
     crear(componentUrl: string, payload: any, successCallback: any = () => { }) {
         this.http.post(this.baseUrl + componentUrl, payload).subscribe((response: any) => {
             successCallback(response);
-            Swal.fire("Éxito!", "Creado exitosamente", "success");
+            // Swal.fire("Éxito!", "Creado exitosamente", "success");
+            Swal.fire({
+                text: "Creado exitosamente",
+                icon: 'success',
+                timer: 1000,
+                showConfirmButton: false,
+                timerProgressBar: true
+            })
         }, (error) => {
             console.log(error);
         });
@@ -78,7 +85,13 @@ export class GenericService {
         }).then(() => {
             this.http.put(this.baseUrl + componentUrl + id, payload).subscribe((response: any) => {
                 successCallback(response);
-                Swal.fire("Éxito!", "Actualizado exitosamente", "success");
+                Swal.fire({
+                    text: "Operación exitosa",
+                    icon: 'success',
+                    timer: 1000,
+                    showConfirmButton: false,
+                    timerProgressBar: true
+                })
             }), (error) => {
                 console.log(error);
             }
@@ -97,7 +110,13 @@ export class GenericService {
         }).then(() => {
             this.http.delete(this.baseUrl + componentUrl + payload).subscribe((response: any) => {
                 successCallback(response);
-                Swal.fire("Éxito!", "Eliminado exitosamente", "success");
+                Swal.fire({
+                    text: "Eliminado correctamente",
+                    icon: 'success',
+                    timer: 1000,
+                    showConfirmButton: false,
+                    timerProgressBar: true
+                })
             }), (error) => {
                 console.log(error);
             }

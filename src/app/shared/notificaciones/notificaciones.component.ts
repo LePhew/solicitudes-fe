@@ -35,28 +35,27 @@ export class NotificacionesComponent implements OnInit {
       icon: 'info',
       timer: 3000,
       timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('click', () => {
-          this._router.navigate(['/admin/solicitudes']);
-        })
-      },
       showConfirmButton: false,
       title: 'Una nueva solicitud fue creada'
     }).fire();
-    this.notificacionesCount++;
     this.getNotificaciones();
   }
   fillDropDown() {
     let dropdown = document.getElementById('dropdown2');
-    dropdown.childNodes.forEach((node) => {
-      dropdown.removeChild(node);
-    })
-    if (this.notificacionesCount > 0) {
+    console.log(dropdown.childNodes.length);
+    while (dropdown.firstChild) {
+      dropdown.removeChild(dropdown.firstChild);
+    }
+    console.log(dropdown.childNodes.length);
+    if (this.notificacionesCount > 0 && this.notificaciones.length > 0) {
+      console.log("Notificaciones: ", this.notificaciones.length);
+      console.log("NotificacionesCount: ", this.notificacionesCount);
       this.notificaciones.forEach((item: any, index: number) => {
         let li = document.createElement('li');
         li.classList.add('collection-item');
         li.addEventListener('click', () => {
           this.notificacionesCount = 0;
+          this.notificaciones = [];
           this.marcarVistas();
           this._router.navigate(['/admin/solicitud']);
         })
@@ -76,14 +75,14 @@ export class NotificacionesComponent implements OnInit {
   getNotificaciones() {
     this.genericService.getAll(this.componentUrl, (notificaciones: any) => {
       this.notificaciones = notificaciones;
-      this.fillDropDown();
+      this.notificacionesCount = notificaciones.length;
     })
 
   }
 
   marcarVistas() {
     this.genericService.notificacionVista(this.componentUrl + "vistas", () => {
-      this.getNotificaciones();
+      // this.getNotificaciones();
     })
   }
 
